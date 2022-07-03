@@ -9,7 +9,7 @@ const addAd = <AddAd />
 const home = <Home/>
 
 function App() {
-  return  <Home/>;
+  return <AddAd />;
 }
 
 export default App;

@@ -3,28 +3,30 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import SplitButton from 'react-bootstrap/SplitButton';
 import React, { useState, useRef, useEffect } from 'react';
-import { Container } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import './add-ad.css'
+import imgPlaceholder from '../../images/img-placeholder.png'
 import { cats } from '../../configs/cats-config.js';
 import CatPopover from '../../components/CatPopover/CatPopover.js';
+import Card from 'react-bootstrap/Card';
 
 const AddAd = (props) => {
     const [showPopOver, setShowPopOver] = useState(false);
     const [target, setTarget] = useState(null);
-    const [subCats, setSubCats] = useState([])
-  
-    const showSubCats = (e) => {
-      const labelText = target?.innerText
-      const currentLabelText = e.target?.innerText
-  
-      console.log(e.target,'in e')
+    const [images, setImages] = useState(new Array(8).fill(imgPlaceholder))
 
-      currentLabelText !== labelText ? setShowPopOver(true) : setShowPopOver(!showPopOver);
-      setTarget(e.target);
+    const showSubCats = (e) => {
+        const labelText = target?.innerText
+        const currentLabelText = e.target?.innerText
+
+        console.log(e.target, 'in e')
+
+        currentLabelText !== labelText ? setShowPopOver(true) : setShowPopOver(!showPopOver);
+        setTarget(e.target);
     }
-  
+
 
 
     return (
@@ -56,6 +58,20 @@ const AddAd = (props) => {
                         </SplitButton>
                         <Form.Control aria-label="Text input with dropdown button" />
                     </InputGroup>
+                </Container>
+            </section>
+            <section className='add-image-section'>
+                <h2>Снимки</h2>
+                <Container style={{width:'50%'}}>
+                    <Row xs='auto' md='auto' className="g-1">
+                        {images.map(img => (
+                            <Col >
+                                <Card className="bg-dark text-white">
+                                    <Card.Img src={img} alt="Card image" />
+                                </Card>
+                            </Col>
+                        ))}
+                    </Row>
                 </Container>
             </section>
         </section>
