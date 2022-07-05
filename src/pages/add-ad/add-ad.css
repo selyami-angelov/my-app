@@ -3,7 +3,13 @@ background-color: #f2f4f5;
 padding: 24px;
 }
 
-.ad-cat{
+.ad-cat,.add-image-section{
     background-color:#ffffff;
-    width:'80%';
+    width: 1200px;
+}
+.add-ad-title{
+    text-align: center;
+}
+.imgs-row{
+    width: 700px;
 }
