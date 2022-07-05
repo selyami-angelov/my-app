@@ -30,9 +30,9 @@ const AddAd = (props) => {
 
 
     return (
-        <section className='add-ad'>
+        <Container fluid className='add-ad '>
             <h1 className='add-ad-title'>Добави обява</h1>
-            <section className='ad-cat'>
+            <Container className='ad-cat'>
                 <Container>
                     <Form.Label htmlFor="basic-url">Заглавие*</Form.Label>
                     <InputGroup size="lg">
@@ -59,11 +59,12 @@ const AddAd = (props) => {
                         <Form.Control aria-label="Text input with dropdown button" />
                     </InputGroup>
                 </Container>
-            </section>
-            <section className='add-image-section'>
-                <h2>Снимки</h2>
-                <Container style={{width:'50%'}}>
-                    <Row xs='auto' md='auto' className="g-1">
+            </Container>
+            <Container className='add-image-section'>
+                <h4>Снимки</h4>
+                <p>Първата снимка ще бъде основната в обявата ти.</p>
+                <Container  >
+                    <Row  xs="auto" className="g-2 imgs-row">
                         {images.map(img => (
                             <Col >
                                 <Card className="bg-dark text-white">
@@ -73,8 +74,8 @@ const AddAd = (props) => {
                         ))}
                     </Row>
                 </Container>
-            </section>
-        </section>
+            </Container>
+        </Container>
     )
 }
 
