@@ -6,10 +6,13 @@ import CatFigure from "../../components/Categories/Categories.js";
 import ShellBar from "../../components/Shellbar/Shellbar";
 import AdCard from '../../components/AdCard/AdCard';
 import CardContainer from '../../components/CardContainer/CardContainer';
+import {getUsers} from '../../services/userData'
 import './home.css'
 
 
 const Home = (props) => {
+
+  getUsers() 
   return (
     <>
       <SearchToolbar />
