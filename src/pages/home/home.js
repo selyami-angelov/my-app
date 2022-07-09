@@ -12,7 +12,6 @@ import './home.css'
 const Home = (props) => {
   return (
     <>
-      <ShellBar></ShellBar>
       <SearchToolbar />
       <CatFigure></CatFigure>
       <CardContainer cards={<Row className="g-4">

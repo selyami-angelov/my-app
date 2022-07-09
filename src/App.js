@@ -1,15 +1,24 @@
 import React from 'react'
-import logo from "./logo.svg";
+import { Route, Routes, BrowserRouter as Router } from 'react-router-dom'
 import "./App.css";
-import Home from "./pages/home/home";
 import "bootstrap/dist/css/bootstrap.min.css"
+import Home from "./pages/home/home";
 import AddAd from "./pages/add-ad/add-ad.js";
+import ShellBar from './components/Shellbar/Shellbar.js';
 
-const addAd = <AddAd />
-const home = <Home/>
+
 
 function App() {
-  return <AddAd />;
+  return (
+    <Router>
+      <ShellBar></ShellBar>
+      <Routes>
+        <Route path={'/'} element={<Home />} />
+        <Route path={'/home'} element={<Home />} />
+        <Route path={'/add-ad'} element={<AddAd />} />
+      </Routes>
+    </Router>
+  )
 }
 
 export default App;

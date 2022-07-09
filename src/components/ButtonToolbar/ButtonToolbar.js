@@ -1,6 +1,6 @@
+import Button from 'react-bootstrap/Button';
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import Form from "react-bootstrap/Form";
-import MyButton from "../Button/MyButton.js";
 import "./ButtonToolbar.css";
 
 const SearchToolbar = () => {
@@ -22,7 +22,7 @@ const SearchToolbar = () => {
           className="me-1"
           aria-label="Search"
         />
-        <MyButton buttonText={"Търсене"} variant={'outline-dark'}></MyButton>
+        <Button variant='outline-dark'>Търсене</Button>
       </Form>
     </ButtonToolbar>
   );

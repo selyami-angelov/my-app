@@ -1,11 +1,14 @@
+import Button from 'react-bootstrap/Button';
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import MyButton from "../Button/MyButton.js";
+import { useNavigate } from "react-router-dom";
 import "./Shellbar.css";
 
 const ShellBar = (props) => {
+  const navigate = useNavigate()
+
   return (
     <Navbar
       collapseOnSelect
@@ -28,7 +31,7 @@ const ShellBar = (props) => {
               <NavDropdown.Divider />
               <NavDropdown.Item>Изход</NavDropdown.Item>
             </NavDropdown>
-            <MyButton buttonText={"Добави обява"} variant={'outline-light'}></MyButton>
+            <Button onClick={()=> navigate('/add-ad')} variant='outline-light'>Добави обява</Button>
           </Nav>
         </Navbar.Collapse>
       </Container>
