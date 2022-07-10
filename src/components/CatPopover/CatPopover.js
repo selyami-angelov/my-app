@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef } from 'react'
+import ListGroup from 'react-bootstrap/ListGroup'
 import Overlay from 'react-bootstrap/Overlay'
 import Popover from 'react-bootstrap/Popover'
-import ListGroup from 'react-bootstrap/ListGroup'
 import { cats } from '../../configs/cats-config.js'
 
 const CatPopover = (props) => {

@@ -1,12 +1,10 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
 import React from 'react'
-import { Route, Routes, BrowserRouter as Router } from 'react-router-dom'
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css"
-import Home from "./pages/home/home";
-import AddAd from "./pages/add-ad/add-ad.js";
-import ShellBar from './components/Shellbar/Shellbar.js';
-
-
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import './App.css'
+import ShellBar from './components/Shellbar/Shellbar.js'
+import AddAd from './pages/add-ad/add-ad.js'
+import Home from './pages/home/home'
 
 function App() {
   return (
@@ -21,4 +19,4 @@ function App() {
   )
 }
 
-export default App;
+export default App

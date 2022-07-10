@@ -1,7 +1,5 @@
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
-import Image from 'react-bootstrap/Image'
-import dogImg from '../../images/dog-img.png'
 
 const AdCard = (props) => {
   return (

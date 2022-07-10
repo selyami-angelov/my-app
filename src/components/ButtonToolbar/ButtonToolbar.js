@@ -1,8 +1,7 @@
-import Button from 'react-bootstrap/Button';
-import ButtonToolbar from "react-bootstrap/ButtonToolbar";
-import Form from "react-bootstrap/Form";
-
-import "./ButtonToolbar.css";
+import Button from 'react-bootstrap/Button'
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
+import Form from 'react-bootstrap/Form'
+import './ButtonToolbar.css'
 
 const SearchToolbar = () => {
   return (
@@ -23,10 +22,10 @@ const SearchToolbar = () => {
           className="me-1"
           aria-label="Search"
         />
-        <Button variant='outline-dark'>Търсене</Button>
+        <Button variant="outline-dark">Търсене</Button>
       </Form>
     </ButtonToolbar>
-  );
-};
+  )
+}
 
-export default SearchToolbar;
+export default SearchToolbar

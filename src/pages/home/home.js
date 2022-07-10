@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import SearchToolbar from '../../components/ButtonToolbar/ButtonToolbar.js'
-import CatFigure from '../../components/Categories/Categories.js'
 import AdCard from '../../components/AdCard/AdCard'
+import SearchToolbar from '../../components/ButtonToolbar/ButtonToolbar.js'
 import CardContainer from '../../components/CardContainer/CardContainer'
-import './home.css'
+import CatFigure from '../../components/Categories/Categories.js'
 import { getAds } from '../../services/ad.js'
+import './home.css'
 
 const Home = (props) => {
   const [ads, setAds] = useState([])

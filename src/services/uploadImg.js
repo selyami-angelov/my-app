@@ -1,12 +1,11 @@
-import { storage } from '../configs/firebase-config'
 import {
+  deleteObject,
+  getDownloadURL,
   ref,
   uploadBytesResumable,
-  getDownloadURL,
-  getStorage,
-  deleteObject,
 } from 'firebase/storage'
 import { nanoid } from 'nanoid'
+import { storage } from '../configs/firebase-config'
 
 export const uploadImage = async (files, setCreateAdData) => {
   files.forEach((file) => {

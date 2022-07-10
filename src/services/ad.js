@@ -1,6 +1,5 @@
-import { doc, setDoc, getDocs } from 'firebase/firestore'
+import { collection, doc, getDocs, setDoc } from 'firebase/firestore'
 import { db } from '../configs/firebase-config.js'
-import { collection } from 'firebase/firestore'
 
 export const createAd = (data) => {
   const addsRef = doc(collection(db, 'ads'))

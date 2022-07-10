@@ -1,21 +1,16 @@
-import Button from 'react-bootstrap/Button';
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import { useNavigate } from "react-router-dom";
-import "./Shellbar.css";
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar'
+import NavDropdown from 'react-bootstrap/NavDropdown'
+import { useNavigate } from 'react-router-dom'
+import './Shellbar.css'
 
 const ShellBar = (props) => {
   const navigate = useNavigate()
 
   return (
-    <Navbar
-      collapseOnSelect
-      expand="lg"
-      bg="dark"
-      variant="dark"
-    >
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
         <Navbar.Brand>xlO</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -31,12 +26,14 @@ const ShellBar = (props) => {
               <NavDropdown.Divider />
               <NavDropdown.Item>Изход</NavDropdown.Item>
             </NavDropdown>
-            <Button onClick={()=> navigate('/add-ad')} variant='outline-light'>Добави обява</Button>
+            <Button onClick={() => navigate('/add-ad')} variant="outline-light">
+              Добави обява
+            </Button>
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  );
-};
+  )
+}
 
-export default ShellBar;
+export default ShellBar
