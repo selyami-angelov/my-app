@@ -11,10 +11,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: npm ci && npm run build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_REACT___XLO }}'
-          channelId: live
-          projectId: react---xlo
+          node-version: '14'
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
+
+      - name: Install dependencies
+        run: cd my-site && npm ci --ignore-scripts
+          ^^^^^^^^^^^^
+
+      # run npm test, build, lint, etc.
+    # steps:
+    #   - uses: actions/checkout@v2
+    #   - run: npm ci && npm run build
+    #   - uses: FirebaseExtended/action-hosting-deploy@v0
+    #     with:
+    #       repoToken: '${{ secrets.GITHUB_TOKEN }}'
+    #       firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_REACT___XLO }}'
+    #       channelId: live
+    #       projectId: react---xlo
