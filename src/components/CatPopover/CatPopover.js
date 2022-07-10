@@ -6,7 +6,7 @@ import { cats } from '../../configs/cats-config.js'
 
 const CatPopover = (props) => {
   const ref = useRef(null)
-  const cat = cats.find((cat) => cat.label.trim() == props.labelText.trim())
+  const cat = cats.find((cat) => cat.label.trim() === props.labelText.trim())
 
   console.log(props.placement)
 

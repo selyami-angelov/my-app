@@ -7,7 +7,6 @@ import './Categories.css'
 const CatFigure = () => {
   const [showPopOver, setShowPopOver] = useState(false)
   const [target, setTarget] = useState(null)
-  const [subCats, setSubCats] = useState([])
 
   const labelText = target?.getElementsByTagName('label')[0].innerText
 

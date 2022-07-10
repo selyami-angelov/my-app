@@ -16,8 +16,6 @@ const AddAd = (props) => {
   const [showPopOver, setShowPopOver] = useState(false)
   const [target, setTarget] = useState(null)
   const [images, setImages] = useState(new Array(8).fill(undefined))
-  const [radioValue, setRadioValue] = useState('0')
-  const [conditionValue, setConditionValue] = useState(0)
   const [createAdData, setCreateAdData] = useState({
     category: '',
     contact_person: '',
