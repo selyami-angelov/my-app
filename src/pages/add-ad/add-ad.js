@@ -15,26 +15,26 @@ import Image from 'react-bootstrap/Image'
 import { ref } from 'firebase/storage'
 import { storage } from '../../configs/firebase-config'
 import { createAd } from '../../services/ad.js'
-import { uploadImage } from '../../services/uploadImg.js'
+import { deleteImages, uploadImage } from '../../services/uploadImg.js'
 
 const AddAd = (props) => {
   const [showPopOver, setShowPopOver] = useState(false)
   const [target, setTarget] = useState(null)
-  const [images, setImages] = useState(new Array(8).fill(imgPlaceholder))
+  const [images, setImages] = useState(new Array(8).fill(undefined))
   const [radioValue, setRadioValue] = useState('0')
   const [conditionValue, setConditionValue] = useState(0)
   const [createAdData, setCreateAdData] = useState({
-    category: 'asdad',
-    contact_person: 'asd',
-    delivery: 'asd',
-    description: 'asd',
-    email: 'asd',
+    category: '',
+    contact_person: '',
+    delivery: '',
+    description: '',
+    email: '',
     images: [],
-    location: 'asd',
-    phone: 'asd',
+    location: '',
+    phone: '',
     price: 123,
-    currency: 'bgn',
-    title: 'asd',
+    currency: '',
+    title: '',
   })
 
   const showSubCats = (e) => {
@@ -48,29 +48,34 @@ const AddAd = (props) => {
   }
 
   const imagesSelect = (e) => {
-    const selectedImages = Array.from(e.target.files).map((file) =>
-      URL.createObjectURL(file)
-    )
+    if (createAdData.images?.length) {
+      deleteImages(createAdData.images)
+      setCreateAdData((prev) => ({ ...prev, images: [] }))
+    }
 
     setImages(Array.from(e.target.files))
-    setCreateAdData({ ...createAdData, images: e.target.files[0] })
-
-    //uploadImage(e.target.files[0])
+    uploadImage(Array.from(e.target.files), setCreateAdData)
   }
 
-  console.log(createAdData)
-
   const handleSubmit = () => {
-    console.log('in')
-
-    uploadImage(createAdData.images)
     createAd(createAdData)
+    setCreateAdData({
+      category: '',
+      contact_person: '',
+      delivery: '',
+      description: '',
+      email: '',
+      images: [],
+      location: '',
+      phone: '',
+      price: 123,
+      currency: '',
+      title: '',
+    })
   }
 
   const onInput = (e) => {
     const inputName = e.target.dataset.name
-
-    console.log(e)
 
     setCreateAdData({ ...createAdData, [inputName]: e.target.value })
   }
@@ -132,11 +137,10 @@ const AddAd = (props) => {
             {images.map((img) => (
               <Col>
                 <Image
+                  className={styles['ad-imgs']}
                   rounded
                   thumbnail
-                  style={{ width: '150px' }}
-                  src={img}
-                  alt="Card image"
+                  src={img && URL.createObjectURL(img)}
                 />
               </Col>
             ))}

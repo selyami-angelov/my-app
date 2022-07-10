@@ -1,19 +1,19 @@
-import { doc, setDoc } from 'firebase/firestore'
+import { doc, setDoc, getDocs } from 'firebase/firestore'
 import { db } from '../configs/firebase-config.js'
-import {
-  getFirestore,
-  collection,
-  query,
-  where,
-  getDocs,
-} from 'firebase/firestore'
+import { collection } from 'firebase/firestore'
 
-export const createAd = async (data) => {
-  //const adsRef = doc(db, 'adds')
-  //const result = await setDoc(adsRef, data)
+export const createAd = (data) => {
+  const addsRef = doc(collection(db, 'ads'))
+  setDoc(addsRef, data)
+}
 
-  const newCityRef = doc(collection(db, 'adds'))
+export const getAds = async (setAds) => {
+  const querySnapshot = await getDocs(collection(db, 'ads'))
 
-  // later...
-  await setDoc(newCityRef, data)
+  const ads = querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    data: doc.data(),
+  }))
+
+  setAds(ads)
 }
