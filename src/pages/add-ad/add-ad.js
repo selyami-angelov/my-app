@@ -102,7 +102,7 @@ const AddAd = (props) => {
             >
               <ListGroup variant="flush">
                 {cats.map((cat) => (
-                  <ListGroup.Item onClick={showSubCats}>
+                  <ListGroup.Item key={cat.label} onClick={showSubCats}>
                     {cat.icon} {cat.label}
                   </ListGroup.Item>
                 ))}
@@ -117,6 +117,7 @@ const AddAd = (props) => {
             </SplitButton>
             <Form.Control
               aria-label="Text input with dropdown button"
+              onChange={() => console.log('')} //TODO: console error
               value={createAdData.category}
             />
           </InputGroup>
@@ -127,8 +128,8 @@ const AddAd = (props) => {
         <label>Първата снимка ще бъде основната в обявата ти.</label>
         <Container>
           <Row xs="auto" className={`g-2 ${styles['imgs-row']}`}>
-            {images.map((img) => (
-              <Col>
+            {images.map((img, index) => (
+              <Col key={index}>
                 <Image
                   className={styles['ad-imgs']}
                   rounded
