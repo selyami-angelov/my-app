@@ -1,15 +1,18 @@
 import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
 import { getStorage } from 'firebase/storage'
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyB6B5fkTeIWVyKRMvdt-7UGcG2eP7nbhW0',
-  authDomain: 'react---xlo.web.app',
-  projectId: 'react---xlo',
-  storageBucket: 'react---xlo.appspot.com',
-  messagingSenderId: '547318856695',
-  appId: '1:547318856695:web:e4f777c4393c8c276a0cf2',
-  measurementId: 'G-NGTFVTE8Z6',
+  apiKey: process.env.XLO_FIREBASE_API_KEY,
+  authDomain: process.env.XLO_AUTH_DOMAIN,
+  projectId: process.env.XLO_PROJECT_ID,
+  storageBucket: process.env.XLO_STORAGE_BUCKET,
+  messagingSenderId: process.env.XLO_MESSAGING_SENDER_ID,
+  appId: process.env.XLO_APP_ID,
+  measurementId: process.env.XLO_MEASUREMENT_ID,
 }
+
+XLO_MEASUREMENT_ID = G - NGTFVTE8Z6
 
 const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)
