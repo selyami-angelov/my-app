@@ -1,6 +1,11 @@
 import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
 import { getStorage } from 'firebase/storage'
+import {
+  getAuth,
+  FacebookAuthProvider,
+  GoogleAuthProvider,
+} from 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -12,6 +17,12 @@ const firebaseConfig = {
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 }
 
+export const providers = {
+  'google.com': new GoogleAuthProvider(),
+  'facebook.com': new FacebookAuthProvider(),
+}
+
 const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)
 export const storage = getStorage(app)
+export const auth = getAuth()

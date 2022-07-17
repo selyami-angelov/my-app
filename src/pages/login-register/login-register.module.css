@@ -1,0 +1,22 @@
+.facebook {
+  color: #2f4d93;
+}
+.google {
+  color: #d0463b;
+}
+.social-button i {
+  width: 24px;
+}
+.social-button label {
+  width: 200px;
+}
+.nav {
+  margin-bottom: 24px;
+  color: unset;
+}
+.err-strip {
+  position: absolute;
+  bottom: 0;
+  right: 10%;
+  left: 10%;
+}

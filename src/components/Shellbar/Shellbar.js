@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
@@ -6,9 +6,23 @@ import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import { useNavigate } from 'react-router-dom'
 import './Shellbar.css'
+import { auth } from '../../configs/firebase-config'
+import { signOut } from 'firebase/auth'
+import { AuthContext } from '../../context/AuthContext.js'
 
 const ShellBar = (props) => {
   const navigate = useNavigate()
+  const { dispatch } = useContext(AuthContext)
+  const logOut = () => {
+    signOut(auth)
+      .then(() => {
+        dispatch({ type: 'LOGOUT' })
+        navigate('/')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -29,6 +43,12 @@ const ShellBar = (props) => {
             </NavDropdown>
             <Button onClick={() => navigate('/add-ad')} variant="outline-light">
               Добави обява
+            </Button>
+            <Button onClick={() => navigate('/login')} variant="outline-light">
+              Вход
+            </Button>
+            <Button onClick={logOut} variant="outline-light">
+              Изход
             </Button>
           </Nav>
         </Navbar.Collapse>
