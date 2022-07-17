@@ -20,7 +20,7 @@ const Home = (props) => {
   return (
     <>
       <SearchToolbar />
-      <CatFigure></CatFigure>
+      <CatFigure />
       <CardContainer
         cards={
           <Row className="g-4">

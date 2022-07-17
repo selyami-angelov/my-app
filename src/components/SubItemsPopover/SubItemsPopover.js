@@ -1,14 +1,10 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Overlay from 'react-bootstrap/Overlay'
 import Popover from 'react-bootstrap/Popover'
-import { cats } from '../../configs/cats-config.js'
 
-const CatPopover = (props) => {
+const SubItemsPopover = (props) => {
   const ref = useRef(null)
-  const cat = cats.find((cat) => cat.label.trim() === props.labelText.trim())
-
-  console.log(props.placement)
 
   return (
     <div ref={ref}>
@@ -19,13 +15,20 @@ const CatPopover = (props) => {
         container={ref}
         containerPadding={20}
       >
-        <Popover id="popover-contained">
+        <Popover
+          style={{ height: '400px', overflowY: 'scroll' }}
+          id="popover-contained"
+        >
           <Popover.Header as="h3">{props.labelText}</Popover.Header>
           <Popover.Body>
             <ListGroup variant="flush">
-              {cat?.subCats?.map((cat) => (
-                <ListGroup.Item key={cat} action onClick={props.onSubCatClick}>
-                  {cat}
+              {props.items?.map((item) => (
+                <ListGroup.Item
+                  key={item}
+                  action
+                  onClick={props.onSubItemClick}
+                >
+                  {item}
                 </ListGroup.Item>
               ))}
             </ListGroup>
@@ -36,4 +39,4 @@ const CatPopover = (props) => {
   )
 }
 
-export default CatPopover
+export default SubItemsPopover

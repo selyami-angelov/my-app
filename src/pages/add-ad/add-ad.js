@@ -6,7 +6,8 @@ import Image from 'react-bootstrap/Image'
 import InputGroup from 'react-bootstrap/InputGroup'
 import ListGroup from 'react-bootstrap/ListGroup'
 import SplitButton from 'react-bootstrap/SplitButton'
-import CatPopover from '../../components/CatPopover/CatPopover.js'
+import NestedSelect from '../../components/NestedSelect/NestedSelect.js'
+import SubItemsPopover from '../../components/SubItemsPopover/SubItemsPopover.js'
 import { cats } from '../../configs/cats-config.js'
 import { createAd } from '../../services/ad.js'
 import { deleteImages, uploadImage } from '../../services/uploadImg.js'
@@ -30,13 +31,22 @@ const AddAd = (props) => {
     title: '',
   })
 
+  const [category, setCategory] = useState([])
+
   const showSubCats = (e) => {
     const labelText = target?.innerText
     const currentLabelText = e.target?.innerText
 
-    currentLabelText !== labelText
-      ? setShowPopOver(true)
-      : setShowPopOver(!showPopOver)
+    if (currentLabelText !== labelText) {
+      const cat = cats.find(
+        (cat) => cat.label.trim() === currentLabelText.trim()
+      )
+      setShowPopOver(true)
+      setCategory(cat)
+    } else {
+      setShowPopOver(!showPopOver)
+    }
+
     setTarget(e.target)
   }
 
@@ -74,13 +84,23 @@ const AddAd = (props) => {
   }
 
   const onSubCatClick = (e) => {
-    const catName = e.target.innerText
-    setCreateAdData({ ...createAdData, category: catName })
+    const catName = category.label
+    const subCatName = e.target.innerText
+    setCreateAdData({ ...createAdData, category: `${catName}/ ${subCatName}` })
+    setShowPopOver(false)
+  }
+
+  const handleOutsideClick = (e) => {
+    e.target.className !== 'list-group-item' && setShowPopOver(false)
   }
 
   return (
     <>
-      <Container fluid className={styles['add-ad']}>
+      <Container
+        onClick={handleOutsideClick}
+        fluid
+        className={styles['add-ad']}
+      >
         <h1 className={styles['add-ad-title']}>Добави обява</h1>
         <Container className={styles['ad-cat']}>
           <Container>
@@ -95,33 +115,18 @@ const AddAd = (props) => {
             </InputGroup>
             <br />
             <Form.Label htmlFor="basic-url">Категория*</Form.Label>
-            <InputGroup size="lg" className="mb-3">
-              <SplitButton
-                variant="outline-secondary"
-                title="Избери категория"
-                id="segmented-button-dropdown-1"
-              >
-                <ListGroup variant="flush">
-                  {cats.map((cat) => (
-                    <ListGroup.Item key={cat.label} onClick={showSubCats}>
-                      {cat.icon} {cat.label}
-                    </ListGroup.Item>
-                  ))}
-                </ListGroup>
-                <CatPopover
-                  placement={'right'}
-                  labelText={target?.innerText ?? ''}
-                  show={showPopOver}
-                  target={target}
-                  onSubCatClick={onSubCatClick}
-                ></CatPopover>
-              </SplitButton>
-              <Form.Control
-                aria-label="Text input with dropdown button"
-                onChange={() => console.log('')} //TODO: console error
-                value={createAdData.category}
-              />
-            </InputGroup>
+            <NestedSelect
+              title={'Избери Категория'}
+              items={cats}
+              showSubItem={showSubCats}
+              icon={true}
+              value={createAdData.category}
+              subItems={category?.subCats}
+              labelText={createAdData.category}
+              show={showPopOver}
+              target={target}
+              onSubItemClick={onSubCatClick}
+            />
           </Container>
         </Container>
         <Container className={styles['add-image-section']}>

@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import Container from 'react-bootstrap/esm/Container'
 import { cats } from '../../configs/cats-config.js'
-import CatPopover from '../CatPopover/CatPopover.js'
+import SubItemsPopover from '../SubItemsPopover/SubItemsPopover'
 import './Categories.css'
 
 const CatFigure = () => {
   const [showPopOver, setShowPopOver] = useState(false)
   const [target, setTarget] = useState(null)
+  const [items, setItems] = useState([])
 
   const labelText = target?.getElementsByTagName('label')[0].innerText
 
@@ -14,9 +15,15 @@ const CatFigure = () => {
     const currentLabelText =
       e.currentTarget.getElementsByTagName('label')[0].innerText
 
-    currentLabelText !== labelText
-      ? setShowPopOver(true)
-      : setShowPopOver(!showPopOver)
+    if (currentLabelText !== labelText) {
+      const subCats = cats.find(
+        (cat) => cat.label.trim() === currentLabelText.trim()
+      )
+      setShowPopOver(true)
+      setItems(subCats)
+    } else {
+      setShowPopOver(!showPopOver)
+    }
     setTarget(e.currentTarget)
   }
 
@@ -30,12 +37,13 @@ const CatFigure = () => {
           </li>
         ))}
       </ul>
-      <CatPopover
+      <SubItemsPopover
+        items={items.subCats}
         placement={'bottom'}
         labelText={labelText ?? ''}
         show={showPopOver}
         target={target}
-      ></CatPopover>
+      ></SubItemsPopover>
     </Container>
   )
 }

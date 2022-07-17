@@ -9,10 +9,12 @@ import './Shellbar.css'
 import { auth } from '../../configs/firebase-config'
 import { signOut } from 'firebase/auth'
 import { AuthContext } from '../../context/AuthContext.js'
+import { RequireAuth } from '../../hoc/RequireAuth.js'
 
 const ShellBar = (props) => {
   const navigate = useNavigate()
   const { dispatch } = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext)
   const logOut = () => {
     signOut(auth)
       .then(() => {
@@ -33,23 +35,15 @@ const ShellBar = (props) => {
           <Nav className="justify-content-end flex-grow-1">
             <Nav.Link>Съобщения</Nav.Link>
             <Nav.Link>Любими</Nav.Link>
-            <NavDropdown title="Моят профил" id="collasible-nav-dropdown">
-              <NavDropdown.Item>Обяви</NavDropdown.Item>
-              <NavDropdown.Item>Съобщения</NavDropdown.Item>
-              <NavDropdown.Item>Любими</NavDropdown.Item>
-              <NavDropdown.Item>Настройки</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item>Изход</NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link>Моят профил</Nav.Link>
             <Button onClick={() => navigate('/add-ad')} variant="outline-light">
               Добави обява
             </Button>
-            <Button onClick={() => navigate('/login')} variant="outline-light">
-              Вход
-            </Button>
-            <Button onClick={logOut} variant="outline-light">
-              Изход
-            </Button>
+            {currentUser && (
+              <Button onClick={logOut} variant="outline-light">
+                Изход
+              </Button>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
