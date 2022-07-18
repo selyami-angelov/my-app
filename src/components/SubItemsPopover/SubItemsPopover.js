@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Overlay from 'react-bootstrap/Overlay'
 import Popover from 'react-bootstrap/Popover'
+import styles from './SubItemsPopover.module.css'
 
 const SubItemsPopover = (props) => {
   const ref = useRef(null)
@@ -15,10 +16,7 @@ const SubItemsPopover = (props) => {
         container={ref}
         containerPadding={20}
       >
-        <Popover
-          style={{ height: '400px', overflowY: 'scroll' }}
-          id="popover-contained"
-        >
+        <Popover className={styles['list-group']} id="popover-contained">
           <Popover.Header as="h3">{props.labelText}</Popover.Header>
           <Popover.Body>
             <ListGroup variant="flush">

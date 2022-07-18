@@ -4,6 +4,7 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import ListGroup from 'react-bootstrap/ListGroup'
 import SplitButton from 'react-bootstrap/SplitButton'
 import SubItemsPopover from '../SubItemsPopover/SubItemsPopover.js'
+import styles from './NestedSelect.module.css'
 
 const NestedSelect = (props) => {
   //items
@@ -19,10 +20,7 @@ const NestedSelect = (props) => {
           title={title}
           id="segmented-button-dropdown-1"
         >
-          <ListGroup
-            style={{ height: '400px', overflowY: 'scroll' }}
-            variant="flush"
-          >
+          <ListGroup className={styles['list-group']} variant="flush">
             {items.map((item) => (
               <ListGroup.Item key={item.label} onClick={showSubItem}>
                 {(icon && (

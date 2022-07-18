@@ -28,6 +28,7 @@ const Home = (props) => {
               ads.map((doc) => (
                 <Col key={doc.id} xs lg="3">
                   <AdCard
+                    id={doc.id}
                     title={doc.title}
                     descr={doc.data.description}
                     img={doc.data.images[0]?.url}

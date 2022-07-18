@@ -11,7 +11,7 @@ import SubItemsPopover from '../../components/SubItemsPopover/SubItemsPopover.js
 import { cats } from '../../configs/cats-config.js'
 import { createAd } from '../../services/ad.js'
 import { deleteImages, uploadImage } from '../../services/uploadImg.js'
-import styles from './add-ad.module.css'
+import styles from './create-ad.module.css'
 
 const AddAd = (props) => {
   const [showPopOver, setShowPopOver] = useState(false)
