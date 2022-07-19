@@ -6,6 +6,7 @@ import Carousel from 'react-bootstrap/Carousel'
 import SearchToolbar from '../../components/ButtonToolbar/ButtonToolbar.js'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import UserCard from '../../components/UserCard/UserCard.js'
 
 const AdPage = (props) => {
   const [ad, setAd] = useState({})
@@ -38,14 +39,7 @@ const AdPage = (props) => {
             </Carousel>
           </Col>
           <Col lg="4">
-            <Card>
-              <Card.Header>Потребител</Card.Header>
-              <Card.Body>
-                <i class="fa-solid fa-circle-user"></i>
-                <Card.Title>{ad.contact_person}</Card.Title>
-                <Button variant="outline-dark">Dark</Button>
-              </Card.Body>
-            </Card>
+            <UserCard userName={ad.contact_person} />
           </Col>
         </Row>
       </Container>

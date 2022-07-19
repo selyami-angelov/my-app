@@ -1,0 +1,10 @@
+.use-title {
+  display: flex;
+  justify-content: start;
+  align-items: baseline;
+  gap: 18px;
+}
+
+.use-title i {
+  font-size: 42px;
+}
