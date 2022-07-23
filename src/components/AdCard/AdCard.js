@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router'
 const AdCard = (props) => {
   const navigate = useNavigate()
   const openAd = () => {
-    navigate(`/ad/${props.id}`)
+    navigate(`/product/${props.id}`)
   }
   console.log(props.id)
   return (

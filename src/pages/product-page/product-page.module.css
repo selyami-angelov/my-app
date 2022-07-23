@@ -1,0 +1,13 @@
+.user-info-cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.container {
+  background-color: #f2f4f5;
+  padding-bottom: 1.5rem;
+}
+.row {
+  padding-top: 1rem;
+}
