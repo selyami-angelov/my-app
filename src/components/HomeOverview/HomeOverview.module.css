@@ -1,0 +1,14 @@
+.home-overview-section {
+  height: 400px;
+  width: 100%;
+  text-align: center;
+  background-color: #cbf7ee;
+  padding: 38px 0;
+}
+.home-overview-section h2 {
+  margin: 36px;
+}
+.home-overview-section p {
+  width: 820px;
+  margin: auto;
+}
