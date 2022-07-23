@@ -1,0 +1,9 @@
+.logo {
+  list-style: none;
+  text-decoration: none;
+  color: #23e5db;
+}
+
+.logo:hover {
+  color: white;
+}
