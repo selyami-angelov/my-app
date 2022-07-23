@@ -1,0 +1,24 @@
+.card-content {
+  display: flex;
+  gap: 0.5rem;
+  align-content: flex-start;
+  margin-top: 24px;
+}
+.location-icon {
+  font-size: 24px;
+  margin-right: 1rem;
+}
+.location-text-content p {
+  margin: 0;
+  line-height: 19px;
+  font-size: 14px;
+}
+.google-map {
+  width: 60%;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.location-text-content {
+  width: 40%;
+}
