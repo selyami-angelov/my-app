@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import styles from './UserCard.module.css'
-import { Row } from 'react-bootstrap'
 
 const UserCard = (props) => {
   const { userName } = props
@@ -12,7 +11,12 @@ const UserCard = (props) => {
       <Card.Body>
         <div className={styles['use-title']}>
           <i class="fa-solid fa-circle-user"></i>
-          <Card.Title>{userName}</Card.Title>
+          <div>
+            <Card.Title>{userName}</Card.Title>
+            <p>
+              В XLO то <span>март 2017 г.</span>
+            </p>
+          </div>
         </div>
       </Card.Body>
       <Card.Footer>
