@@ -1,20 +1,28 @@
-import { collection, doc, getDocs, setDoc, getDoc } from 'firebase/firestore'
+import {
+  collection,
+  doc,
+  getDocs,
+  setDoc,
+  getDoc,
+  query,
+  where,
+} from 'firebase/firestore'
 import { db } from '../configs/firebase-config.js'
 
 export const createAd = (data) => {
-  const addsRef = doc(collection(db, 'ads'))
-  setDoc(addsRef, data)
+  const productsRef = doc(collection(db, 'ads'))
+  setDoc(productsRef, data)
 }
 
 export const getAds = async (setAds) => {
   const querySnapshot = await getDocs(collection(db, 'ads'))
 
-  const ads = querySnapshot.docs.map((doc) => ({
+  const products = querySnapshot.docs.map((doc) => ({
     id: doc.id,
     data: doc.data(),
   }))
 
-  setAds(ads)
+  setAds(products)
 }
 
 export const getAd = async (id) => {
@@ -26,4 +34,15 @@ export const getAd = async (id) => {
   } else {
     console.log('No such document!')
   }
+}
+
+export const getProductsQuery = async (field, contains) => {
+  const productsRef = collection(db, 'ads')
+  console.log(productsRef)
+  const q = query(productsRef, where(field, '==', contains))
+  const querySnapshot = await getDocs(q)
+  return querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    data: doc.data(),
+  }))
 }

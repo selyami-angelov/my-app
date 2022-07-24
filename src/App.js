@@ -6,9 +6,10 @@ import ShellBar from './components/Shellbar/Shellbar.js'
 import { AuthContext } from './context/AuthContext.js'
 import { RequireAuth } from './hoc/RequireAuth.js'
 import ProductPage from './pages/product-page/product-page.js'
-import AddAd from './pages/create-ad/create-ad.js'
+import CreateAd from './pages/create-ad/create-ad.js'
 import Home from './pages/home/home'
 import LoginPage from './pages/login-register/login-register.js'
+import Products from './pages/products/Producs.js'
 
 function App() {
   const { currentUser } = useContext(AuthContext)
@@ -21,14 +22,18 @@ function App() {
         <Route path={'/'} element={<Home />} />
         <Route path={'/home'} element={<Home />} />
         <Route
-          path={'/add-ad'}
+          path={'/create-ad'}
           element={
             <RequireAuth>
-              <AddAd />
+              <CreateAd />
             </RequireAuth>
           }
         />
         <Route path={'/product/:productId'} element={<ProductPage />} />
+        <Route
+          path={'/products/:category/:subcategory'}
+          element={<Products />}
+        />
       </Routes>
     </Router>
   )

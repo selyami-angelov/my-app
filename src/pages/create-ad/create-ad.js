@@ -13,7 +13,7 @@ import { createAd } from '../../services/ad.js'
 import { deleteImages, uploadImage } from '../../services/uploadImg.js'
 import styles from './create-ad.module.css'
 
-const AddAd = (props) => {
+const CreateAd = (props) => {
   const [showPopOver, setShowPopOver] = useState(false)
   const [target, setTarget] = useState(null)
   const [images, setImages] = useState(new Array(8).fill(undefined))
@@ -275,4 +275,4 @@ const AddAd = (props) => {
   )
 }
 
-export default AddAd
+export default CreateAd

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import AdCard from '../../components/AdCard/AdCard'
+import ProductCard from '../../components/ProductCard/ProductCard'
 import SearchToolbar from '../../components/ButtonToolbar/ButtonToolbar.js'
 import CardContainer from '../../components/CardContainer/CardContainer'
 import CatFigure from '../../components/Categories/Categories.js'
@@ -29,7 +29,7 @@ const Home = (props) => {
             {ads.length &&
               ads.map((doc) => (
                 <Col key={doc.id} xs lg="3">
-                  <AdCard
+                  <ProductCard
                     id={doc.id}
                     title={doc.title}
                     descr={doc.data.description}

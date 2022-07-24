@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card'
 import Badge from 'react-bootstrap/Badge'
 import styles from './ProductInfoCard.module.css'
 const ProductInfoCard = (props) => {
-  const { title, description, delivery, price, category, currency } = props
+  const { title, description, delivery, price, currency } = props
 
   return (
     <Card>
@@ -13,9 +13,6 @@ const ProductInfoCard = (props) => {
           {price} {currency}
         </h4>
         <h6>
-          <Badge bg="secondary">
-            Категория: {category?.split('/')[0].trim()}
-          </Badge>{' '}
           <Badge bg="secondary">Доставката се поема от: {delivery}</Badge>
         </h6>
         <Card.Subtitle>ОПИСАНИЕ</Card.Subtitle>

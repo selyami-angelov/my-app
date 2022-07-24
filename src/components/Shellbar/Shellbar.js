@@ -38,7 +38,10 @@ const ShellBar = (props) => {
             <Nav.Link>Съобщения</Nav.Link>
             <Nav.Link>Любими</Nav.Link>
             <Nav.Link>Моят профил</Nav.Link>
-            <Button onClick={() => navigate('/add-ad')} variant="outline-light">
+            <Button
+              onClick={() => navigate('/create-ad')}
+              variant="outline-light"
+            >
               Добави обява
             </Button>
             {currentUser && (

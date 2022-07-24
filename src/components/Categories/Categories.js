@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 import Container from 'react-bootstrap/esm/Container'
+import { useNavigate } from 'react-router'
 import { cats } from '../../configs/cats-config.js'
 import SubItemsPopover from '../SubItemsPopover/SubItemsPopover'
+import CyrillicToTranslit from 'cyrillic-to-translit-js'
 import './Categories.css'
+import { transliterate } from '../../common/utils/text-transform.js'
 
 const CatFigure = () => {
   const [showPopOver, setShowPopOver] = useState(false)
   const [target, setTarget] = useState(null)
   const [items, setItems] = useState([])
+  const navigate = useNavigate()
 
   const labelText = target?.getElementsByTagName('label')[0].innerText
 
@@ -24,7 +28,20 @@ const CatFigure = () => {
     } else {
       setShowPopOver(!showPopOver)
     }
+    console.log(e.currentTarget)
     setTarget(e.currentTarget)
+  }
+
+  const subItemClick = (e) => {
+    const cyrillicToTranslit = new CyrillicToTranslit()
+    const category = cyrillicToTranslit
+      .transform(target.innerText, '-')
+      .toLowerCase()
+    const subCategory = cyrillicToTranslit
+      .transform(e.target.innerText.replace(', ', ' '), '-')
+      .toLowerCase()
+
+    navigate(`/products/${category}/${subCategory}`)
   }
 
   return (
@@ -38,6 +55,7 @@ const CatFigure = () => {
         ))}
       </ul>
       <SubItemsPopover
+        onSubItemClick={subItemClick}
         items={items.subCats}
         placement={'bottom'}
         labelText={labelText ?? ''}

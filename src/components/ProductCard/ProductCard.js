@@ -2,15 +2,16 @@ import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import { useNavigate } from 'react-router'
+import styles from './ProductCard.module.css'
 
-const AdCard = (props) => {
+const ProductCard = (props) => {
   const navigate = useNavigate()
   const openAd = () => {
     navigate(`/product/${props.id}`)
   }
   console.log(props.id)
   return (
-    <Card>
+    <Card className={styles['product-card']}>
       <Card.Img variant="top" src={props.img} />
       <Card.Body>
         <Card.Title>{props.title}</Card.Title>
@@ -23,4 +24,4 @@ const AdCard = (props) => {
   )
 }
 
-export default AdCard
+export default ProductCard

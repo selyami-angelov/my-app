@@ -52,7 +52,6 @@ const ProductPage = (props) => {
                 description={ad.description}
                 delivery={ad.delivery}
                 price={ad.price}
-                category={ad.category}
                 currency={ad.currency}
               />
             </Col>
