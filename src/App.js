@@ -6,7 +6,7 @@ import ShellBar from './components/Shellbar/Shellbar.js'
 import { AuthContext } from './context/AuthContext.js'
 import { RequireAuth } from './hoc/RequireAuth.js'
 import ProductPage from './pages/product-page/product-page.js'
-import CreateAd from './pages/create-ad/create-ad.js'
+import CreateProduct from './pages/create-product/create-product.js'
 import Home from './pages/home/home'
 import LoginPage from './pages/login-register/login-register.js'
 import Products from './pages/products/Producs.js'
@@ -25,7 +25,7 @@ function App() {
           path={'/create-ad'}
           element={
             <RequireAuth>
-              <CreateAd />
+              <CreateProduct />
             </RequireAuth>
           }
         />

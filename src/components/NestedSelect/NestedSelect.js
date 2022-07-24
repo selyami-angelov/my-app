@@ -33,7 +33,7 @@ const NestedSelect = (props) => {
             ))}
           </ListGroup>
         </SplitButton>
-        <Form.Control value={value} />
+        <Form.Control onChange={() => {}} value={value} />
       </InputGroup>
       <SubItemsPopover
         items={subItems}
