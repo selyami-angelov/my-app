@@ -10,7 +10,7 @@ const UserCard = (props) => {
       <Card.Header>Потребител</Card.Header>
       <Card.Body>
         <div className={styles['use-title']}>
-          <i class="fa-solid fa-circle-user"></i>
+          <i className="fa-solid fa-circle-user"></i>
           <div>
             <Card.Title>{userName}</Card.Title>
             <p>
@@ -21,7 +21,7 @@ const UserCard = (props) => {
       </Card.Body>
       <Card.Footer>
         <div className="d-grid gap-2">
-          <Button clasName={styles['call-user']} variant="outline-dark">
+          <Button className={styles['call-user']} variant="outline-dark">
             Обади се
           </Button>
         </div>

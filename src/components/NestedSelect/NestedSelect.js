@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
 import ListGroup from 'react-bootstrap/ListGroup'
 import SplitButton from 'react-bootstrap/SplitButton'
+import { FormContextProvider } from '../../context/FormContext.js'
 import SubItemsPopover from '../SubItemsPopover/SubItemsPopover.js'
 import styles from './NestedSelect.module.css'
 
@@ -34,6 +35,9 @@ const NestedSelect = (props) => {
           </ListGroup>
         </SplitButton>
         <Form.Control onChange={() => {}} value={value} />
+        <Form.Control.Feedback type="invalid">
+          Полето е задължително
+        </Form.Control.Feedback>
       </InputGroup>
       <SubItemsPopover
         items={subItems}

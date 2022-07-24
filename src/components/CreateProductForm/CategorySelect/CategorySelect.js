@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
 import { cats } from '../../../configs/cats-config.js'
+import { FormContext } from '../../../context/FormContext.js'
 import NestedSelect from '../../NestedSelect/NestedSelect.js'
+import { onInput } from '../utils.js'
 import styles from './CategorySelect.module.css'
 
 const CategorySelect = (props) => {
   const {
-    onInput,
     showSubCats,
     createAdData,
     category,
@@ -17,17 +18,21 @@ const CategorySelect = (props) => {
     onSubCatClick,
   } = props
 
+  const { formData, setFormData } = useContext(FormContext)
+
   return (
     <Container className={styles['ad-cat']}>
-      <Form.Label htmlFor="basic-url">Заглавие*</Form.Label>
+      <Form.Label>Заглавие*</Form.Label>
       <InputGroup size="lg">
         <Form.Control
-          value={createAdData.title}
+          value={formData.title}
+          name="title"
           data-name="title"
-          onChange={onInput}
-          aria-label="Large"
-          aria-describedby="inputGroup-sizing-sm"
+          onChange={(e) => onInput(e, setFormData)}
         />
+        <Form.Control.Feedback type="invalid">
+          Полето е задължително
+        </Form.Control.Feedback>
       </InputGroup>
       <br />
       <Form.Label htmlFor="basic-url">Категория*</Form.Label>

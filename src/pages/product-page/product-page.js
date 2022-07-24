@@ -24,8 +24,6 @@ const ProductPage = (props) => {
       })
   }, [])
 
-  console.log(ad, 'ad')
-
   return (
     <>
       <SearchToolbar />
