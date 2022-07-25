@@ -2,7 +2,7 @@ import { object, string, number, array, reach } from 'yup'
 
 export const INITIAL_FORM_VALUES = {
   category: '',
-  subCategory: '',
+  sub_category: '',
   contact_person: '',
   delivery: 'купувача',
   description: '',
@@ -17,7 +17,7 @@ export const INITIAL_FORM_VALUES = {
 
 export const INITIAL_FORM_ERRORS = {
   category: undefined,
-  subCategory: undefined,
+  sub_category: undefined,
   contact_person: undefined,
   delivery: undefined,
   description: undefined,

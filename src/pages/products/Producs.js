@@ -32,12 +32,13 @@ const Products = (props) => {
           <Container className={styles['container']}>
             {products.map((product) => (
               <ProductCardLandscape
+                id={product.id}
                 key={product.data.images[0].url}
                 url={product.data.images[0].url}
                 title={product.data.title}
                 price={product.data.price}
                 currency={product.data.currency}
-                location={product.data.location}
+                city={product.data.city}
               />
             ))}
           </Container>

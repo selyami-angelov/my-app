@@ -1,3 +1,4 @@
+import cyrillicToTranslit from 'cyrillic-to-translit-js'
 import React, { useContext, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
@@ -29,10 +30,18 @@ const CreateProductForm = () => {
     )
 
     if (isValid) {
+      const cyrillic = new cyrillicToTranslit()
+
+      console.log(formData.category)
+      console.log(formData.subCategory)
       createAd({
         ...formData,
         userId: currentUser.uid,
-        createdDate: new Date().getTime(),
+        created_date: new Date().getTime(),
+        category: cyrillic.transform(formData.category, '-').toLowerCase(),
+        sub_category: cyrillic
+          .transform(formData.subCategory.replace(', ', ' '), '-')
+          .toLowerCase(),
       })
       setFormData(INITIAL_FORM_VALUES)
       navigate('/')

@@ -1,12 +1,16 @@
+import { useNavigate } from 'react-router'
 import styles from './ProductCardLandscape.module.css'
 
 const ProductCardLandscape = (props) => {
-  const { url, title, price, currency, location } = props
+  const { url, title, price, currency, city, id } = props
+  const navigate = useNavigate()
 
-  console.log(props)
+  const openProduct = (e) => {
+    navigate(`/product/${id}`)
+  }
 
   return (
-    <article className={styles['landscape-card']}>
+    <article onClick={openProduct} className={styles['landscape-card']}>
       <article className={styles['img-container']}>
         <img src={url} alt="product" />
       </article>
@@ -18,7 +22,7 @@ const ProductCardLandscape = (props) => {
           </h4>
         </article>
         <article className={styles['card-footer']}>
-          <label>гр. {location}</label>
+          <label>гр. {city}</label>
         </article>
       </article>
     </article>

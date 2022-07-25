@@ -31,10 +31,12 @@ const Home = (props) => {
                 <Col key={doc.id} xs lg="3">
                   <ProductCard
                     id={doc.id}
-                    title={doc.title}
-                    descr={doc.data.description}
+                    title={doc.data.title}
                     img={doc.data.images[0]?.url}
-                    btnText={'Преглед'}
+                    city={doc.data.city}
+                    created_date={doc.data.created_date}
+                    price={doc.data.price}
+                    currency={doc.data.currency}
                   />
                 </Col>
               ))}
