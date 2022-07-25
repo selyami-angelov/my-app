@@ -1,19 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
 import { cities } from '../../../common/cities.js'
+import { formValidationSchema } from '../../../common/schemas.js'
+import { AuthContext } from '../../../context/AuthContext.js'
+import { FormContext } from '../../../context/FormContext.js'
+import { FormErrorsContext } from '../../../context/FormErrorsContext.js'
 import NestedSelect from '../../NestedSelect/NestedSelect.js'
+import { onInput, validateForm } from '../utils.js'
 import styles from './ContactInfo.module.css'
 
-const ContactInfo = (props) => {
-  const { onInput, createAdData } = props
+const ContactInfo = () => {
   const [regions, setRegions] = useState([])
   const [citiesInRegion, setCitiesInRegion] = useState([])
-  const [region, setRegion] = useState('')
-  const [show, setShow] = useState(false)
-  const [target, setTarget] = useState(undefined)
-  const [value, setValue] = useState('')
+  const [popOver, setPopOver] = useState({
+    taget: undefined,
+    show: false,
+  })
+  const { currentUser } = useContext(AuthContext)
+  const { formData, setFormData } = useContext(FormContext)
+  const { formErrors, setFormErrors } = useContext(FormErrorsContext)
+
+  const validateOnBlur = (e) => {
+    validateForm(formData, setFormErrors, formValidationSchema, e.target.name)
+  }
 
   useEffect(() => {
     const regions = Array.from(
@@ -31,16 +42,16 @@ const ContactInfo = (props) => {
       .filter((city) => city.admin_name === selectedRegion)
       .map((city) => city.city)
     setCitiesInRegion(citiesInRegion)
-    setRegion(selectedRegion)
-    setShow(true)
-    setTarget(e.target)
-    setValue(selectedRegion)
+    setFormData((prev) => ({ ...prev, region: selectedRegion }))
+    setPopOver({ target: e.target, show: true })
   }
 
   const onCityClick = (e) => {
     e.preventDefault()
-    setValue((prev) => `${prev}, ${e.target.innerText}`)
-    setShow(false)
+    setFormData((prev) => ({ ...prev, city: e.target.innerText }))
+    setFormErrors((prev) => ({ ...prev, city: undefined }))
+
+    setPopOver({ target: undefined, show: false })
   }
 
   return (
@@ -49,42 +60,57 @@ const ContactInfo = (props) => {
       <Form.Label htmlFor="basic-url">Локация*</Form.Label>
       <NestedSelect
         title={'Избери локация'}
+        name={'city'}
         items={regions}
         showSubItem={showCities}
         icon={false}
-        value={value}
+        value={`${formData.region} ${formData.city && '/ ' + formData.city}`}
         subItems={citiesInRegion}
-        labelText={region}
-        show={show}
-        target={target}
+        labelText={formData.region}
+        show={popOver.show}
+        target={popOver.target}
         onSubItemClick={onCityClick}
       />
       <Form.Label htmlFor="basic-url">Лице за контакт*</Form.Label>
       <InputGroup size="lg" className={`mb-1 ${styles['contact-input']}`}>
         <Form.Control
-          value={createAdData.contact_person}
+          value={formData.contact_person}
+          name="contact_person"
           data-name="contact_person"
-          onChange={onInput}
+          onChange={(e) => onInput(e, setFormData)}
+          onBlur={validateOnBlur}
           aria-describedby="basic-addon1"
+          isInvalid={formErrors.contact_person}
         />
+        <Form.Control.Feedback type="invalid">
+          {formErrors.contact_person}
+        </Form.Control.Feedback>
       </InputGroup>
       <Form.Label htmlFor="basic-url">Имейл адрес</Form.Label>
       <InputGroup size="lg" className={`mb-1 ${styles['contact-input']}`}>
         <Form.Control
-          value={createAdData.email}
+          disabled={true}
+          value={currentUser.email}
+          name="email"
           data-name="email"
-          onChange={onInput}
+          onChange={(e) => onInput(e, setFormData)}
           aria-describedby="basic-addon1"
         />
       </InputGroup>
       <Form.Label htmlFor="basic-url">Телефонен номер</Form.Label>
       <InputGroup size="lg" className={`mb-1 ${styles['contact-input']}`}>
         <Form.Control
-          value={createAdData.phone}
+          value={formData.phone}
+          name="phone"
           data-name="phone"
-          onChange={onInput}
+          onChange={(e) => onInput(e, setFormData)}
+          onBlur={validateOnBlur}
           aria-describedby="basic-addon1"
+          isInvalid={formErrors.phone}
         />
+        <Form.Control.Feedback type="invalid">
+          {formErrors.phone}
+        </Form.Control.Feedback>
       </InputGroup>
     </Container>
   )

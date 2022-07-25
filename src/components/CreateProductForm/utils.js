@@ -1,25 +1,30 @@
-export const initialFormValues = {
+import { object, string, number, array, reach } from 'yup'
+
+export const INITIAL_FORM_VALUES = {
   category: '',
+  subCategory: '',
   contact_person: '',
-  delivery: '',
+  delivery: 'купувача',
   description: '',
-  email: '',
   images: [],
-  location: '',
+  region: '',
+  city: '',
   phone: '',
-  price: 0,
-  currency: '',
+  price: '',
+  currency: 'лв',
   title: '',
 }
 
-export const formErrors = {
+export const INITIAL_FORM_ERRORS = {
   category: undefined,
+  subCategory: undefined,
   contact_person: undefined,
   delivery: undefined,
   description: undefined,
   email: undefined,
   images: undefined,
-  location: undefined,
+  region: undefined,
+  city: undefined,
   phone: undefined,
   price: undefined,
   currency: undefined,
@@ -29,4 +34,47 @@ export const formErrors = {
 export const onInput = (e, setFormData) => {
   const inputName = e.target.dataset.name
   setFormData((prev) => ({ ...prev, [inputName]: e.target.value }))
+}
+
+export const validateForm = async (form, setFormErrors, schema, field) => {
+  let isValid = true
+
+  if (field) {
+    const fieldSchema = schema[field]
+    fieldSchema
+      .validate(form[field])
+      .then((result) => {
+        setFormErrors((prev) => ({ ...prev, [field]: undefined }))
+      })
+      .catch((err) => {
+        const splitErrMessage = err.message.split(',')[0].trim()
+        if (splitErrMessage === 'this must be a `number` type') {
+          setFormErrors((prev) => ({ ...prev, [field]: 'Въведи валидна цена' }))
+          return
+        }
+        setFormErrors((prev) => ({ ...prev, [field]: err.message }))
+      })
+    return
+  }
+
+  for (const fieldName of Object.keys(schema)) {
+    try {
+      const result = await schema[fieldName].validate(await form[fieldName])
+      setFormErrors((prev) => ({ ...prev, [fieldName]: undefined }))
+      console.log(result.message, 'result')
+    } catch (error) {
+      isValid = false
+      const splitErrMessage = error.message.split(',')[0].trim()
+      if (splitErrMessage === 'this must be a `number` type') {
+        setFormErrors((prev) => ({
+          ...prev,
+          [fieldName]: 'Въведи валидна цена',
+        }))
+        return
+      }
+      setFormErrors((prev) => ({ ...prev, [fieldName]: error.message }))
+    }
+  }
+
+  return isValid
 }

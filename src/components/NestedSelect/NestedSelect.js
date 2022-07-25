@@ -1,17 +1,19 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
 import ListGroup from 'react-bootstrap/ListGroup'
 import SplitButton from 'react-bootstrap/SplitButton'
-import { FormContextProvider } from '../../context/FormContext.js'
+import { FormContext, FormContextProvider } from '../../context/FormContext.js'
+import { FormErrorsContext } from '../../context/FormErrorsContext.js'
 import SubItemsPopover from '../SubItemsPopover/SubItemsPopover.js'
 import styles from './NestedSelect.module.css'
 
 const NestedSelect = (props) => {
   //items
-  const { items, showSubItem, icon, value, title } = props
+  const { items, showSubItem, icon, value, title, name } = props
   //sub-items (popover)
   const { subItems, labelText, show, target, onSubItemClick } = props
+  const { formErrors } = useContext(FormErrorsContext)
 
   return (
     <>
@@ -34,9 +36,14 @@ const NestedSelect = (props) => {
             ))}
           </ListGroup>
         </SplitButton>
-        <Form.Control onChange={() => {}} value={value} />
+        <Form.Control
+          onChange={() => {}}
+          value={value}
+          name={formErrors && formErrors[name]}
+          isInvalid={formErrors && formErrors[name]}
+        />
         <Form.Control.Feedback type="invalid">
-          Полето е задължително
+          {formErrors && formErrors[name]}
         </Form.Control.Feedback>
       </InputGroup>
       <SubItemsPopover

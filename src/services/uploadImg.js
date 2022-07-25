@@ -7,7 +7,7 @@ import {
 import { nanoid } from 'nanoid'
 import { storage } from '../configs/firebase-config'
 
-export const uploadImage = async (files, setCreateAdData) => {
+export const uploadImages = async (files, setCreateAdData) => {
   files.forEach((file) => {
     const fnWithNanoId = file.name + nanoid()
     const storageRef = ref(storage, `images/${fnWithNanoId}`)

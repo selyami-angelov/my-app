@@ -1,22 +1,9 @@
 import { createContext, useState } from 'react'
+import { INITIAL_FORM_ERRORS } from '../components/CreateProductForm/utils.js'
 
-const INITIAL_FORM_ERRORS = {
-  category: undefined,
-  contact_person: undefined,
-  delivery: undefined,
-  description: undefined,
-  email: undefined,
-  images: undefined,
-  location: undefined,
-  phone: undefined,
-  price: undefined,
-  currency: undefined,
-  title: undefined,
-}
+export const FormErrorsContext = createContext(INITIAL_FORM_ERRORS)
 
-export const FormContext = createContext(INITIAL_FORM_ERRORS)
-
-export const FormContextProvider = ({ children }) => {
+export const FormErrorsContextProvider = ({ children }) => {
   const [state, setState] = useState(INITIAL_FORM_ERRORS)
 
   return (

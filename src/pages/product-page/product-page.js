@@ -35,11 +35,11 @@ const ProductPage = (props) => {
               <CarouselCard images={ad.images} />
             </Col>
             <Col lg="4" className={styles['user-info-cards']}>
-              <UserCard userName={ad.contact_person} />
+              <UserCard phone={ad.phone} userName={ad.contact_person} />
               <UserLocationCard
                 userName={ad.contact_person}
-                city={ad.location}
-                area={ad.area}
+                city={ad.city}
+                area={ad.region}
               />
             </Col>
           </Row>

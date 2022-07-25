@@ -1,18 +1,5 @@
 import { createContext, useState } from 'react'
-
-const INITIAL_FORM_VALUES = {
-  category: '',
-  contact_person: '',
-  delivery: '',
-  description: '',
-  email: '',
-  images: [],
-  location: '',
-  phone: '',
-  price: 0,
-  currency: 'лв',
-  title: '',
-}
+import { INITIAL_FORM_VALUES } from '../components/CreateProductForm/utils.js'
 
 export const FormContext = createContext(INITIAL_FORM_VALUES)
 

@@ -5,7 +5,6 @@ import { cats } from '../../configs/cats-config.js'
 import SubItemsPopover from '../SubItemsPopover/SubItemsPopover'
 import CyrillicToTranslit from 'cyrillic-to-translit-js'
 import './Categories.css'
-import { transliterate } from '../../common/utils/text-transform.js'
 
 const CatFigure = () => {
   const [showPopOver, setShowPopOver] = useState(false)

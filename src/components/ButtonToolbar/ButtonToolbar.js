@@ -60,6 +60,7 @@ const SearchToolbar = () => {
         />
         <NestedSelect
           title={'Избери локация'}
+          name={'city'}
           items={regions}
           showSubItem={showCities}
           icon={false}
