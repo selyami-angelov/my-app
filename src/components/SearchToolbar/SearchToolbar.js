@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useDebugValue, useEffect, useState } from 'react'
 import { Container, InputGroup } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import Form from 'react-bootstrap/Form'
 import { cities } from '../../common/cities.js'
 import NestedSelect from '../NestedSelect/NestedSelect.js'
-import styles from './ButtonToolbar.module.css'
+import styles from './SearchToolbar.module.css'
 
-const SearchToolbar = () => {
+const SearchToolbar = (props) => {
+  const { locationSearch } = props
   const [regions, setRegions] = useState([])
   const [citiesInRegion, setCitiesInRegion] = useState([])
   const [region, setRegion] = useState('')
@@ -46,6 +47,11 @@ const SearchToolbar = () => {
     e.target.className !== 'list-group-item' && setShow(false)
   }
 
+  const handleSearch = (e) => {
+    locationSearch(e)
+    setValue('')
+  }
+
   return (
     <ButtonToolbar
       onClick={handleOutsideClick}
@@ -71,7 +77,9 @@ const SearchToolbar = () => {
           target={target}
           onSubItemClick={onCityClick}
         />
-        <Button variant="dark">Търсене</Button>
+        <Button name={value} onClick={handleSearch} variant="dark">
+          Търсене
+        </Button>
       </InputGroup>
     </ButtonToolbar>
   )

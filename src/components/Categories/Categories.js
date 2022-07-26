@@ -40,7 +40,9 @@ const CatFigure = () => {
       .transform(e.target.innerText.replace(', ', ' '), '-')
       .toLowerCase()
 
-    navigate(`/products/${category}/${subCategory}`)
+    navigate(`/products/${category}/${subCategory}`, {
+      state: { category: target.innerText, subCategory: e.target.innerText },
+    })
   }
 
   return (

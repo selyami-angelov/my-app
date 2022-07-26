@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router'
 import styles from './ProductCardLandscape.module.css'
+import HeartIcon from '../HeartIcon/HeartIcon.js'
 
 const ProductCardLandscape = (props) => {
   const { url, title, price, currency, city, id } = props
@@ -23,6 +24,7 @@ const ProductCardLandscape = (props) => {
         </article>
         <article className={styles['card-footer']}>
           <label>гр. {city}</label>
+          <HeartIcon />
         </article>
       </article>
     </article>

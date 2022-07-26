@@ -1,9 +1,8 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
 import { useNavigate } from 'react-router'
+import HeartIcon from '../HeartIcon/HeartIcon.js'
 import styles from './ProductCard.module.css'
-import Tooltip from 'react-bootstrap/Tooltip'
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 
 const ProductCard = (props) => {
   const { img, title, city, created_date, price, currency, id } = props
@@ -35,17 +34,7 @@ const ProductCard = (props) => {
               {price} {currency}
             </Card.Subtitle>
           </article>
-          <OverlayTrigger
-            placement="top"
-            overlay={<Tooltip>Наблюдавай</Tooltip>}
-          >
-            <article
-              onClick={(e) => console.log(e)}
-              className={styles['heart-icon']}
-            >
-              <i className="fa-regular fa-heart"></i>
-            </article>
-          </OverlayTrigger>
+          <HeartIcon />
         </article>
       </Card.Body>
     </Card>
