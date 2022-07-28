@@ -9,19 +9,31 @@ import Footer from '../../components/Footer/Footer.js'
 import HomeOverview from '../../components/HomeOverview/HomeOverview.js'
 import { getAds } from '../../services/ad.js'
 import './home.css'
+import { useNavigate } from 'react-router'
+import cyrillicToTranslit from 'cyrillic-to-translit-js'
 
 const Home = (props) => {
   const [ads, setAds] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     getAds(setAds)
   }, [])
 
-  console.log(ads)
+  const handleLocationSearch = (e) => {
+    const cyrillicTranslit = new cyrillicToTranslit()
+    const city = cyrillicTranslit
+      .transform(e.target.name.split(', ')[1].trim(), '-')
+      .toLowerCase()
+
+    navigate(`/products/all/all/?city=${city}`, {
+      state: { category: 'all', subCategory: 'all' },
+    })
+  }
 
   return (
     <>
-      <SearchToolbar />
+      <SearchToolbar locationSearch={handleLocationSearch} />
       <CatFigure />
       <CardContainer
         cards={

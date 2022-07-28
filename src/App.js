@@ -34,6 +34,7 @@ function App() {
           path={'/products/:category/:subcategory'}
           element={<Products />}
         />
+        <Route path={'/products/:city'} element={<Products />} />
       </Routes>
     </Router>
   )
