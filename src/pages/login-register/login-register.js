@@ -46,8 +46,8 @@ const LoginPage = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user
-        dispatch({ type: 'LOGIN', payload: user })
         //SAVE TO LOCALE STORAGE
+        dispatch({ type: 'LOGIN', payload: user })
         navigate('/')
       })
       .catch((error) => {

@@ -1,8 +1,10 @@
-import React, { useDebugValue, useEffect, useState } from 'react'
-import { Container, InputGroup } from 'react-bootstrap'
+import cyrillicToTranslit from 'cyrillic-to-translit-js'
+import React, { useEffect, useState } from 'react'
+import { InputGroup } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import Form from 'react-bootstrap/Form'
+import { useNavigate } from 'react-router'
 import { cities } from '../../common/cities.js'
 import NestedSelect from '../NestedSelect/NestedSelect.js'
 import styles from './SearchToolbar.module.css'
@@ -15,6 +17,7 @@ const SearchToolbar = (props) => {
   const [show, setShow] = useState(false)
   const [target, setTarget] = useState(undefined)
   const [value, setValue] = useState('')
+  const navigate = useNavigate()
 
   useEffect(() => {
     const regions = Array.from(
@@ -38,6 +41,17 @@ const SearchToolbar = (props) => {
     setValue(selectedRegion)
   }
 
+  const defaultSearch = (e) => {
+    const cyrillicTranslit = new cyrillicToTranslit()
+    const city = cyrillicTranslit
+      .transform(e.target.name.split(', ')[1].trim(), '-')
+      .toLowerCase()
+
+    navigate(`/products/all/all/?city=${city}`, {
+      state: { category: 'all', subCategory: 'all' },
+    })
+  }
+
   const onCityClick = (e) => {
     e.preventDefault()
     setValue((prev) => `${prev}, ${e.target.innerText}`)
@@ -48,7 +62,7 @@ const SearchToolbar = (props) => {
   }
 
   const handleSearch = (e) => {
-    locationSearch(e)
+    locationSearch ? locationSearch(e) : defaultSearch(e)
     setValue('')
   }
 

@@ -34,7 +34,7 @@ const ProductCard = (props) => {
               {price} {currency}
             </Card.Subtitle>
           </article>
-          <HeartIcon />
+          <HeartIcon productId={id} />
         </article>
       </Card.Body>
     </Card>

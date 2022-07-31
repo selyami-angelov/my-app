@@ -1,4 +1,5 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
+import Badge from 'react-bootstrap/Badge'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
@@ -7,12 +8,15 @@ import { Link, useNavigate } from 'react-router-dom'
 import { auth } from '../../configs/firebase-config'
 import { signOut } from 'firebase/auth'
 import { AuthContext } from '../../context/AuthContext.js'
+
 import styles from './Shellbar.module.css'
+import useFollowedProducts from '../../hook/useFollowedProducts.js'
 
 const ShellBar = (props) => {
   const navigate = useNavigate()
   const { dispatch } = useContext(AuthContext)
   const { currentUser } = useContext(AuthContext)
+  const [followed, setFollowed] = useFollowedProducts()
   const logOut = () => {
     signOut(auth)
       .then(() => {
@@ -24,6 +28,10 @@ const ShellBar = (props) => {
       })
   }
 
+  useEffect(() => {
+    console.log(followed, 'followed')
+  }, [followed])
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -34,9 +42,15 @@ const ShellBar = (props) => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="justify-content-end flex-grow-1">
-            <Nav.Link>Съобщения</Nav.Link>
-            <Nav.Link>Любими</Nav.Link>
+          <Nav
+            className={`justify-content-end flex-grow-1 ${styles['nav-bar']}`}
+          >
+            <Nav.Link className={styles['followed-products']}>
+              <i className={`fa-regular fa-heart ${styles['heart-icon']}`}></i>
+              <Badge className={styles['badge']} bg="primary">
+                {followed?.length}
+              </Badge>
+            </Nav.Link>
             <Nav.Link href="/user-products">Моите обяви</Nav.Link>
             <Button
               onClick={() => navigate('/create-ad')}

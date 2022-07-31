@@ -7,6 +7,7 @@ import {
   query,
   where,
   updateDoc,
+  deleteDoc,
 } from 'firebase/firestore'
 import { db } from '../configs/firebase-config.js'
 
@@ -50,4 +51,8 @@ export const getProductsQuery = async (field, contains) => {
     id: doc.id,
     data: doc.data(),
   }))
+}
+
+export const deleteProduct = async (id) => {
+  await deleteDoc(doc(db, 'ads', id))
 }

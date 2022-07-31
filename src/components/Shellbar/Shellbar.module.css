@@ -7,3 +7,17 @@
 .logo:hover {
   color: white;
 }
+
+.nav-bar {
+  font-size: 20px;
+  gap: 1rem;
+}
+.followed-products {
+  position: relative;
+}
+.badge {
+  font-size: 11px;
+  position: absolute;
+  top: 0;
+  border-radius: 50%;
+}

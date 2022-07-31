@@ -42,14 +42,16 @@ const CreateProductForm = () => {
     const form = { ...formData }
 
     //upload images
-    try {
-      for (const img of images) {
-        const result = await uploadImg(img.img)
-        form.images.push(result)
+    if (images.some((img) => img)) {
+      try {
+        for (const img of images) {
+          const result = await uploadImg(img?.img)
+          form.images.push(result)
+        }
+      } catch (error) {
+        console.log(error, 'error')
+        return
       }
-    } catch (error) {
-      console.log(error, 'error')
-      return
     }
 
     const isValid = await validateForm(
