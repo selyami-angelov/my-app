@@ -6,6 +6,7 @@ import {
   getDoc,
   query,
   where,
+  updateDoc,
 } from 'firebase/firestore'
 import { db } from '../configs/firebase-config.js'
 
@@ -21,7 +22,6 @@ export const getAds = async (setAds) => {
     id: doc.id,
     data: doc.data(),
   }))
-
   setAds(products)
 }
 
@@ -34,6 +34,11 @@ export const getAd = async (id) => {
   } else {
     console.log('No such document!')
   }
+}
+
+export const updateProduct = async (id, data) => {
+  const docRef = doc(db, 'ads', id)
+  await updateDoc(docRef, data)
 }
 
 export const getProductsQuery = async (field, contains) => {

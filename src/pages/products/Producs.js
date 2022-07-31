@@ -47,7 +47,6 @@ const Products = () => {
 
   useEffect(() => {
     const avalibleFilters = filterQueries.filter((qr) => Object.values(qr)[0])
-
     const result = filterProducts(allProducts, avalibleFilters)
 
     setProducts(result)

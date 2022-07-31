@@ -37,7 +37,7 @@ const ShellBar = (props) => {
           <Nav className="justify-content-end flex-grow-1">
             <Nav.Link>Съобщения</Nav.Link>
             <Nav.Link>Любими</Nav.Link>
-            <Nav.Link>Моят профил</Nav.Link>
+            <Nav.Link href="/user-products">Моите обяви</Nav.Link>
             <Button
               onClick={() => navigate('/create-ad')}
               variant="outline-light"

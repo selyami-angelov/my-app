@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
+import { useParams } from 'react-router'
 import { formValidationSchema } from '../../../common/schemas.js'
 import { cats } from '../../../configs/cats-config.js'
 import { FormContext } from '../../../context/FormContext.js'
@@ -11,6 +12,7 @@ import { onInput, validateForm } from '../utils.js'
 import styles from './CategorySelect.module.css'
 
 const CategorySelect = () => {
+  const { productId } = useParams()
   const [selectedCategory, setCategory] = useState([])
   const [popOver, setPopOver] = useState({
     taget: undefined,
@@ -64,22 +66,26 @@ const CategorySelect = () => {
         </Form.Control.Feedback>
       </InputGroup>
       <br />
-      <Form.Label htmlFor="basic-url">Категория*</Form.Label>
-      <NestedSelect
-        title={'Избери Категория'}
-        name={'category'}
-        items={cats}
-        subItems={selectedCategory?.subCats}
-        show={popOver.show}
-        showSubItem={onCatClick}
-        icon={true}
-        value={`${formData.category}${
-          formData.subCategory && '/ ' + formData.subCategory
-        }`}
-        labelText={selectedCategory.label}
-        target={popOver.target}
-        onSubItemClick={onSubCatClick}
-      />
+      {!productId && (
+        <>
+          <Form.Label htmlFor="basic-url">Категория*</Form.Label>
+          <NestedSelect
+            title={'Избери Категория'}
+            name={'category'}
+            items={cats}
+            subItems={selectedCategory?.subCats}
+            show={popOver.show}
+            showSubItem={onCatClick}
+            icon={true}
+            value={`${formData.category}${
+              formData.subCategory && '/ ' + formData.subCategory
+            }`}
+            labelText={selectedCategory.label}
+            target={popOver.target}
+            onSubItemClick={onSubCatClick}
+          />
+        </>
+      )}
     </Container>
   )
 }
