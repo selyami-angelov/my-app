@@ -1,11 +1,15 @@
 import styles from './HeartIcon.module.css'
 import Tooltip from 'react-bootstrap/Tooltip'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
-import useFollowedProducts from '../../hook/useFollowedProducts.js'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { getUserDoc, updateUserDoc } from '../../services/userData.js'
+import { AuthContext } from '../../context/AuthContext.js'
+import { useNavigate } from 'react-router'
 
 const HeartIcon = (props) => {
-  const [followedProducts, setFollowedProducts] = useFollowedProducts()
+  const { currentUser } = useContext(AuthContext)
+  const navigate = useNavigate()
+  const [followed, setFollowed] = useState([])
   const [iconType, setIconType] = useState({
     className: 'fa-regular fa-heart',
     color: '',
@@ -13,27 +17,51 @@ const HeartIcon = (props) => {
 
   const clickHeartIcon = (e) => {
     e.stopPropagation()
-    if (followedProducts.includes(props.productId)) {
-      const newProducts = followedProducts.filter(
-        (id) => id !== props.productId
-      )
-      setFollowedProducts(newProducts)
-    } else {
-      setFollowedProducts((prev) => [...prev, props.productId])
+    if (currentUser) {
+      getUserDoc(currentUser?.uid).then((result) => {
+        if (result.followed?.includes(props?.productId)) {
+          setIconType({ className: 'fa-regular fa-heart', color: '' })
+          updateUserDoc(currentUser?.uid, {
+            followed: result.followed.filter((id) => id !== props?.productId),
+          })
+          setFollowed(result.followed.filter((id) => id !== props?.productId))
+        } else {
+          setIconType({ className: 'fa-solid fa-heart', color: 'black' })
+          updateUserDoc(currentUser?.uid, {
+            followed: [...result.followed, props?.productId],
+          })
+          setFollowed([...result.followed, props?.productId])
+        }
+      })
     }
   }
 
   useEffect(() => {
-    if (followedProducts?.includes(props.productId)) {
+    if (currentUser) {
+      getUserDoc(currentUser?.uid).then((result) => {
+        if (result === 'No such document!') {
+          setFollowed([])
+        } else {
+          setFollowed(result.followed)
+        }
+      })
+    }
+  }, [])
+
+  useEffect(() => {
+    if (followed?.includes(props.productId)) {
       setIconType({ className: 'fa-solid fa-heart', color: 'black' })
     } else {
       setIconType({ className: 'fa-regular fa-heart', color: '' })
     }
-  }, [followedProducts])
+  }, [followed])
 
   return (
     <OverlayTrigger placement="top" overlay={<Tooltip>Наблюдавай</Tooltip>}>
-      <article onClick={clickHeartIcon} className={styles['heart-icon']}>
+      <article
+        onClick={currentUser ? clickHeartIcon : () => navigate('/login')}
+        className={styles['heart-icon']}
+      >
         <i style={{ color: iconType.color }} className={iconType.className}></i>
       </article>
     </OverlayTrigger>
