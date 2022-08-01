@@ -53,8 +53,11 @@ const LoginPage = () => {
       .catch((error) => {
         const errorCode = error.code
         const errorMessage = error.message
+        console.log(errorCode)
         //TODO:
-        console.log(errorMessage)
+        if (errorMessage === 'Firebase: Error (auth/email-already-in-use).') {
+          setErr({ errMessage: 'Имейл адресът вече съществува!', show: true })
+        }
       })
   }
 
@@ -69,6 +72,9 @@ const LoginPage = () => {
         console.log(error.message)
         if (error.message === 'Firebase: Error (auth/invalid-email).') {
           setErr({ errMessage: 'Невалиден имейл или папрола!', show: true })
+        }
+        if (error.message === 'Firebase: Error (auth/wrong-password).') {
+          setErr({ errMessage: 'Неправилна парола!', show: true })
         }
       })
   }
@@ -128,9 +134,11 @@ const LoginPage = () => {
   }
 
   useEffect(() => {
-    setTimeout(() => {
-      setErr({ errMessage: '', show: false })
-    }, 5000)
+    if (err.show) {
+      setTimeout(() => {
+        setErr({ errMessage: '', show: false })
+      }, 5000)
+    }
   }, [err])
 
   return (
