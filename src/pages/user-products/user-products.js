@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap'
+import { useLocation } from 'react-router'
 import ProductCardLandscape from '../../components/ProductCardLandscape/ProductCardLandscape.js'
 import SearchToolbar from '../../components/SearchToolbar/SearchToolbar.js'
 import { AuthContext } from '../../context/AuthContext.js'
@@ -8,11 +9,12 @@ import { getProductsQuery } from '../../services/ad.js'
 import styles from './user-products.module.css'
 
 const UserProducts = () => {
+  const { state } = useLocation()
   const [userProducts, setUserProducts] = useState([])
   const { currentUser } = useContext(AuthContext)
 
   useEffect(() => {
-    getProductsQuery('userId', currentUser.uid)
+    getProductsQuery('userId', state?.userId)
       .then((result) => {
         setUserProducts(result)
       })

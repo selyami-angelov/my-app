@@ -10,7 +10,9 @@ const CarouselCard = (props) => {
         <Carousel>
           {images?.map((img) => (
             <Carousel.Item key={img.name}>
-              <img className="w-100" src={img.url} />
+              <article className={styles['product-img-container']}>
+                <img className={styles['product-img']} src={img.url} />
+              </article>
             </Carousel.Item>
           ))}
         </Carousel>

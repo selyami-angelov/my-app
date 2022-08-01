@@ -24,7 +24,7 @@ const ProductCardLandscape = (props) => {
         </article>
         <article className={styles['card-footer']}>
           <label>гр. {city}</label>
-          <HeartIcon />
+          <HeartIcon productId={id} />
         </article>
       </article>
     </article>

@@ -1,13 +1,42 @@
-.use-title {
+.card-content {
   display: flex;
-  justify-content: start;
-  align-items: center;
-  gap: 18px;
+  flex-direction: column;
+  padding: 24px 24px;
 }
 
-.use-title i {
-  font-size: 42px;
+.card-body {
+  display: flex;
+  gap: 1rem;
+  margin-top: 24px;
 }
-.use-title i {
-  font-size: 42px;
+
+.card-body i {
+  font-size: 37px;
+}
+
+.all-user-products {
+  text-align: center;
+  color: #002f34;
+}
+.call-user {
+  font-weight: bold;
+  height: 48px;
+  border: 5px solid #002f34;
+  background-color: #002f34;
+  color: white;
+  margin-top: 34px;
+}
+.call-user:hover {
+  background-color: white;
+  border: 5px solid #002f34;
+  color: #002f34;
+}
+.all-user-products {
+  border-bottom: 2px solid #002f34;
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+}
+.all-user-products:hover {
+  color: #002f34;
 }

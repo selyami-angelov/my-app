@@ -3,11 +3,11 @@ import Container from 'react-bootstrap/esm/Container'
 import './CardContainer.css'
 
 const CardContainer = (props) => {
-  const { cards } = props
+  const { cards, title } = props
 
   return (
     <section className="card-section">
-      <h2 className="card-section-title">Промо обяви</h2>
+      <h2 className="card-section-title">{title}</h2>
       <Container>{cards}</Container>
     </section>
   )

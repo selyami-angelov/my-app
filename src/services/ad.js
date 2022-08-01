@@ -26,6 +26,16 @@ export const getAds = async (setAds) => {
   setAds(products)
 }
 
+export const getProductDoc = async (productId) => {
+  const docRef = doc(db, 'ads', productId)
+  const docSnap = await getDoc(docRef)
+  if (docSnap.exists()) {
+    return { id: docSnap.id, data: docSnap.data() }
+  } else {
+    console.log('No such document!')
+  }
+}
+
 export const getAd = async (id) => {
   const docRef = doc(db, 'ads', id)
   const docSnap = await getDoc(docRef)

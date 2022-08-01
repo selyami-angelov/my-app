@@ -2,7 +2,7 @@
   display: flex;
   gap: 0.5rem;
   align-content: flex-start;
-  margin-top: 24px;
+  margin-top: 34px;
 }
 .location-icon {
   font-size: 24px;
@@ -21,4 +21,7 @@
 }
 .location-text-content {
   width: 40%;
+}
+.card-body {
+  padding: 24px;
 }

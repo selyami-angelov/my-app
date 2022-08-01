@@ -42,6 +42,7 @@ const Home = (props) => {
               ))}
           </Row>
         }
+        title="Промо обяви"
       ></CardContainer>
       <HomeOverview />
       <Footer />

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { GoogleMap, MarkerClusterer } from '@react-google-maps/api'
+import { GoogleMap } from '@react-google-maps/api'
 import GoogleMapMarker from '../GoogleMapMarker/GoogleMapMarker.js'
 import { LoadScript } from '@react-google-maps/api'
 import { cities } from '../../common/cities.js'
@@ -19,7 +19,7 @@ const Map = (props) => {
     <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}>
       <GoogleMap
         mapContainerStyle={{
-          height: '120px',
+          height: '150px',
           width: '100%',
         }}
         zoom={15}
@@ -28,6 +28,7 @@ const Map = (props) => {
           styles: mapStyles,
           disableDefaultUI: true,
           keyboardShortcuts: false,
+          fullscreenControl: true,
         }}
       >
         <GoogleMapMarker position={cityLatLng} />

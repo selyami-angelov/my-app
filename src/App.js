@@ -14,6 +14,7 @@ import Products from './pages/products/Producs.js'
 import UserProducts from './pages/user-products/user-products.js'
 import { FormErrorsContextProvider } from './context/FormErrorsContext.js'
 import { FormContextProvider } from './context/FormContext.js'
+import FollowedProducts from './pages/followed-products/FollowedProducts.js'
 
 function App() {
   const { currentUser } = useContext(AuthContext)
@@ -49,6 +50,7 @@ function App() {
           element={<Products />}
         />
         <Route path={'/user-products'} element={<UserProducts />} />
+        <Route path={'/followed'} element={<FollowedProducts />} />
       </Routes>
     </Router>
   )

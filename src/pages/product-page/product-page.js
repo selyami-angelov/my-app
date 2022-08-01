@@ -35,7 +35,11 @@ const ProductPage = (props) => {
               <CarouselCard images={ad.images} />
             </Col>
             <Col lg="4" className={styles['user-info-cards']}>
-              <UserCard phone={ad.phone} userName={ad.contact_person} />
+              <UserCard
+                phone={ad.phone}
+                userName={ad.contact_person}
+                userId={ad.userId}
+              />
               <UserLocationCard
                 userName={ad.contact_person}
                 city={ad.city}

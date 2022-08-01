@@ -21,7 +21,7 @@ const UserLocationCard = (props) => {
   return (
     <>
       <Card>
-        <Card.Body>
+        <Card.Body className={styles['card-body']}>
           <Card.Title>
             <i
               className={`fa-solid fa-location-dot ${styles['location-icon']}`}

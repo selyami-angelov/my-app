@@ -19,7 +19,7 @@ export const getUsers = async () => {
   console.log(data.docs.map((doc) => ({ ...doc.data() })))
 }
 
-export const getFollowedProducts = async (userId) => {
+export const getUserDoc = async (userId) => {
   const docRef = doc(db, 'users', userId)
   const docSnap = await getDoc(docRef)
 
