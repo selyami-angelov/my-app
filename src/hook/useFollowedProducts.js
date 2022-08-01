@@ -1,32 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../context/AuthContext.js'
-import {
-  createUserDoc,
-  getFollowedProducts,
-  updateUserDoc,
-} from '../services/userData.js'
+import { getUserDoc } from '../services/userData.js'
 
 const useFollowedProducts = () => {
   const { currentUser } = useContext(AuthContext)
-  const [products, setProducts] = useState(undefined)
+  const [products, setProducts] = useState([])
 
   useEffect(() => {
-    getFollowedProducts(currentUser.uid).then((result) => {
-      if (result === 'No such document!') {
-        createUserDoc(currentUser.uid, { followed: [] })
-        return
-      }
-      setProducts(result.followed)
-    })
+    if (currentUser) {
+      getUserDoc(currentUser?.uid).then((result) => {
+        if (result !== 'No such document!') {
+          setProducts(result.followed)
+        }
+      })
+    }
   }, [])
 
-  useEffect(() => {
-    if (products) {
-      updateUserDoc(currentUser.uid, { followed: products })
-    }
-  }, [products])
-
-  return [products, setProducts]
+  return products
 }
 
 export default useFollowedProducts
