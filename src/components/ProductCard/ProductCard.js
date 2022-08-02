@@ -5,7 +5,7 @@ import HeartIcon from '../HeartIcon/HeartIcon.js'
 import styles from './ProductCard.module.css'
 
 const ProductCard = (props) => {
-  const { img, title, city, created_date, price, currency, id } = props
+  const { img, title, city, created_date, price, currency, id, userId } = props
   const navigate = useNavigate()
   const openProduct = () => {
     navigate(`/product/${id}`)
@@ -34,7 +34,7 @@ const ProductCard = (props) => {
               {price} {currency}
             </Card.Subtitle>
           </article>
-          <HeartIcon productId={id} />
+          <HeartIcon productId={id} userId={userId} />
         </article>
       </Card.Body>
     </Card>

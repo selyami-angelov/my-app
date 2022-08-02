@@ -1,7 +1,7 @@
 .landscape-card {
   display: flex;
   background-color: #ffffff;
-  padding: 0.5rem;
+  padding: 20px;
 }
 .landscape-card:hover {
   cursor: pointer;
@@ -29,4 +29,25 @@
 .card-footer {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
+  font-size: 20px;
+}
+.badges-container {
+  display: flex;
+  gap: 0.5rem;
+}
+.badges-container h6 {
+  margin-bottom: 2px;
+}
+.location label {
+  margin-left: 0.3rem;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgb(64, 99, 103);
+}
+.location i {
+  margin-left: 0.5rem;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgb(64, 99, 103);
 }

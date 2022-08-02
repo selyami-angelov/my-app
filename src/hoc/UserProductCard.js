@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button'
 import { useNavigate } from 'react-router'
 import { deleteProduct, getAd } from '../services/ad.js'
 import { deleteImages } from '../services/uploadImg.js'
+import styles from './UserProductCard.module.css'
 const UserProductCard = ({ children }) => {
   const navigate = useNavigate()
 
@@ -19,13 +20,17 @@ const UserProductCard = ({ children }) => {
   }
 
   return (
-    <article>
+    <article className={styles['container']}>
       {children}
-      <article>
+      <article className={styles['buttons']}>
         <Button onClick={handleOnEditClick} variant="outline-dark">
           Редактирай
         </Button>
-        <Button onClick={handleRemove} variant="outline-dark">
+        <Button
+          className={styles['link']}
+          onClick={handleRemove}
+          variant="link"
+        >
           Премахни обявата
         </Button>
       </article>

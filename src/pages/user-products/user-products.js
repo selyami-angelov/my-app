@@ -32,12 +32,15 @@ const UserProducts = () => {
           {userProducts.map((product) => (
             <UserProductCard key={product.id}>
               <ProductCardLandscape
-                url={product.data.images[0]?.url}
+                id={product.id}
                 title={product.data.title}
                 price={product.data.price}
                 currency={product.data.currency}
+                region={product.data.region}
                 city={product.data.city}
-                id={product.id}
+                category={product.data.category_bg}
+                subCategory={product.data.sub_category_bg}
+                url={product.data.images[0]?.url}
               ></ProductCardLandscape>
             </UserProductCard>
           ))}

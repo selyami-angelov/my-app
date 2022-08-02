@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from 'react'
 import { getUserDoc, updateUserDoc } from '../../services/userData.js'
 import { AuthContext } from '../../context/AuthContext.js'
 import { useNavigate } from 'react-router'
+import IsOwnProduct from '../../hoc/IsOwnProduct.js'
 
 const HeartIcon = (props) => {
   const { currentUser } = useContext(AuthContext)
@@ -57,14 +58,23 @@ const HeartIcon = (props) => {
   }, [followed])
 
   return (
-    <OverlayTrigger placement="top" overlay={<Tooltip>Наблюдавай</Tooltip>}>
-      <article
-        onClick={currentUser ? clickHeartIcon : () => navigate('/login')}
-        className={styles['heart-icon']}
+    <IsOwnProduct>
+      <OverlayTrigger
+        userId={props.userId}
+        placement="top"
+        overlay={<Tooltip>Наблюдавай</Tooltip>}
       >
-        <i style={{ color: iconType.color }} className={iconType.className}></i>
-      </article>
-    </OverlayTrigger>
+        <article
+          onClick={currentUser ? clickHeartIcon : () => navigate('/login')}
+          className={styles['heart-icon']}
+        >
+          <i
+            style={{ color: iconType.color }}
+            className={iconType.className}
+          ></i>
+        </article>
+      </OverlayTrigger>
+    </IsOwnProduct>
   )
 }
 

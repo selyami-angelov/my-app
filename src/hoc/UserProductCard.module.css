@@ -1,0 +1,29 @@
+.buttons {
+  display: flex;
+  justify-content: end;
+  background-color: #ffffff;
+  position: relative;
+  padding: 12px;
+  gap: 1rem;
+}
+.buttons::before {
+  content: '';
+  position: absolute;
+  width: 80%;
+  height: 1px;
+  background-color: lightgrey;
+  top: 0;
+}
+
+.buttons button {
+  font-weight: bold;
+}
+.link {
+  text-decoration: unset;
+  color: #212529;
+  border-left: 1px solid lightgrey;
+}
+
+.link:hover {
+  color: #212529;
+}

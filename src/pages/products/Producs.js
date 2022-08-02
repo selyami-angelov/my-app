@@ -59,7 +59,7 @@ const Products = () => {
   ])
 
   products.forEach((product) => {
-    console.log(product.data)
+    console.log(product.data, 'product data')
   })
   return (
     <>
@@ -70,12 +70,15 @@ const Products = () => {
           {products.map((product) => (
             <ProductCardLandscape
               id={product.id}
-              key={product.data.images[0].url}
+              key={product.id}
               url={product.data.images[0].url}
               title={product.data.title}
               price={product.data.price}
               currency={product.data.currency}
+              region={product.data.region}
               city={product.data.city}
+              category={product.data.category_bg}
+              subCategory={product.data.sub_category_bg}
             />
           ))}
         </Container>

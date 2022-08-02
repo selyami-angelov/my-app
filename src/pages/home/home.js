@@ -31,6 +31,7 @@ const Home = (props) => {
                 <Col key={doc.id} xs lg="3">
                   <ProductCard
                     id={doc.id}
+                    userId={doc.data.userId}
                     title={doc.data.title}
                     img={doc.data.images[0]?.url}
                     city={doc.data.city}

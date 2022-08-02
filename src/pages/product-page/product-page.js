@@ -24,6 +24,8 @@ const ProductPage = (props) => {
       })
   }, [])
 
+  console.log(ad, 'ad')
+
   return (
     <>
       <SearchToolbar />
@@ -55,6 +57,8 @@ const ProductPage = (props) => {
                 delivery={ad.delivery}
                 price={ad.price}
                 currency={ad.currency}
+                category={ad.category_bg}
+                subCategory={ad.sub_category_bg}
               />
             </Col>
           </Row>

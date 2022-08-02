@@ -73,7 +73,7 @@ const ShellBar = () => {
               className={`justify-content-end flex-grow-1 ${styles['nav-bar']}`}
             >
               <Nav.Link
-                href="/followed"
+                onClick={() => navigate(currentUser ? '/followed' : '/login')}
                 className={styles['followed-products']}
               >
                 <i
@@ -87,14 +87,15 @@ const ShellBar = () => {
                 className={styles['variant-link']}
                 variant="link"
                 onClick={() =>
-                  navigate('/user-products', {
-                    state: { userId: currentUser.uid },
+                  navigate(currentUser ? '/user-products' : '/login', {
+                    state: { userId: currentUser?.uid },
                   })
                 }
               >
                 Моите обяви
               </Button>
               <Button
+                variant="outline-dark"
                 className={styles['create']}
                 onClick={() => navigate('/create-ad')}
               >

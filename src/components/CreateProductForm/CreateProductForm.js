@@ -67,9 +67,11 @@ const CreateProductForm = () => {
         userId: currentUser.uid,
         created_date: new Date().getTime(),
         category: cyrillic.transform(formData.category, '-').toLowerCase(),
+        category_bg: formData.category,
         sub_category: cyrillic
           .transform(formData.subCategory.replace(', ', ' '), '-')
           .toLowerCase(),
+        sub_category_bg: formData.subCategory,
       })
 
       setFormData(INITIAL_FORM_VALUES)
