@@ -27,7 +27,7 @@ const HeartIcon = (props) => {
           })
           setFollowed(result.followed.filter((id) => id !== props?.productId))
         } else {
-          setIconType({ className: 'fa-solid fa-heart', color: 'black' })
+          setIconType({ className: 'fa-solid fa-heart', color: '#002f34' })
           updateUserDoc(currentUser?.uid, {
             followed: [...result.followed, props?.productId],
           })
@@ -51,7 +51,7 @@ const HeartIcon = (props) => {
 
   useEffect(() => {
     if (followed?.includes(props.productId)) {
-      setIconType({ className: 'fa-solid fa-heart', color: 'black' })
+      setIconType({ className: 'fa-solid fa-heart', color: '#002f34' })
     } else {
       setIconType({ className: 'fa-regular fa-heart', color: '' })
     }
@@ -69,7 +69,7 @@ const HeartIcon = (props) => {
           className={styles['heart-icon']}
         >
           <i
-            style={{ color: iconType.color }}
+            style={{ color: iconType.color, ...props.style }}
             className={iconType.className}
           ></i>
         </article>

@@ -79,6 +79,7 @@ const Products = () => {
               city={product.data.city}
               category={product.data.category_bg}
               subCategory={product.data.sub_category_bg}
+              userId={product.data.userId}
             />
           ))}
         </Container>

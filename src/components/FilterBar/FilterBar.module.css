@@ -1,9 +1,25 @@
-.tb-bgr {
+.toolbar-container {
+  width: 100%;
+  padding-bottom: 48px;
   background-color: #f2f4f5;
 }
-.tb-pd {
-  padding: 48px 0;
+.title-container {
+  max-width: 1288px;
+  margin: auto;
+  padding-left: 12px;
 }
-.tb-fw {
-  width: 100%;
+.title {
+  font-size: 24px;
+  line-height: 26px;
+  font-weight: 500;
+  color: #002f34;
+  margin: 0;
+  margin-bottom: 16px;
+}
+.form-label {
+  font-size: 14px;
+  line-height: 18px;
+  color: #002f34;
+  margin: 0;
+  margin-bottom: 6px;
 }

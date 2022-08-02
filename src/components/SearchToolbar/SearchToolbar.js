@@ -63,13 +63,12 @@ const SearchToolbar = (props) => {
 
   const handleSearch = (e) => {
     locationSearch ? locationSearch(e) : defaultSearch(e)
-    setValue('')
   }
 
   return (
     <ButtonToolbar
       onClick={handleOutsideClick}
-      className={`justify-content-md-center ${styles['tb-pd']} ${styles['tb-fw']} ${styles['tb-bgr']}`}
+      className={styles['search-bar']}
     >
       <InputGroup size="lg" className="mb-3 d-flex align-items-baseline">
         <Form.Control

@@ -105,82 +105,91 @@ const FilterBar = () => {
   return (
     <>
       <SearchToolbar locationSearch={handleLocatSearch} />
-      <ButtonToolbar
-        className={`justify-content-md-center d-flex align-items-end ${styles['tb-pd']} ${styles['tb-fw']} ${styles['tb-bgr']}`}
-      >
-        <Form.Group>
-          <Form.Label>Категория</Form.Label>
-          <Form.Control
-            onChange={handleCatSelect}
-            as="select"
-            value={state.category}
-            size="lg"
-          >
-            <>
-              {state.category === 'all' && <option>Всички</option>}
-              {cats.map((cat) => (
-                <option key={cat.label} value={cat.label}>
-                  {cat.label}
-                </option>
-              ))}
-            </>
-          </Form.Control>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Всички категории</Form.Label>
-          <Form.Control
-            onChange={handleSubCatSelect}
-            as="select"
-            value={state.subCategory}
-            size="lg"
-          >
-            <>
-              {state.subCategory === 'all' && <option>Всички</option>}
-              {subCatsList?.map((sub) => (
-                <option key={sub} value={sub}>
-                  {sub}
-                </option>
-              ))}
-            </>
-          </Form.Control>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Цена</Form.Label>
-          <Form.Control
-            name="priceFrom"
-            onBlur={handlePriceInput}
-            required
-            type="number"
-            placeholder="От"
-            size="lg"
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Control
-            name="priceTo"
-            onBlur={handlePriceInput}
-            className="align-middle"
-            required
-            type="number"
-            placeholder="До"
-            size="lg"
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Доставката се поема от</Form.Label>
-          <Form.Control
-            value={state.deliveryCondition}
-            onChange={handleDeliveryChange}
-            as="select"
-            size="lg"
-          >
-            <option>Виж всички</option>
-            <option>продавача</option>
-            <option>купувача</option>
-            <option>лично предаване</option>
-          </Form.Control>
-        </Form.Group>
-      </ButtonToolbar>
+      <article className={styles['toolbar-container']}>
+        <article className={styles['title-container']}>
+          <h1 className={styles['title']}>Филтри</h1>
+        </article>
+        <ButtonToolbar
+          className={`justify-content-md-center d-flex align-items-end gap-2`}
+        >
+          <Form.Group>
+            <Form.Label className={styles['form-label']}>Категория</Form.Label>
+            <Form.Control
+              onChange={handleCatSelect}
+              as="select"
+              value={state.category}
+              size="lg"
+            >
+              <>
+                {state.category === 'all' && <option>Всички</option>}
+                {cats.map((cat) => (
+                  <option key={cat.label} value={cat.label}>
+                    {cat.label}
+                  </option>
+                ))}
+              </>
+            </Form.Control>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label className={styles['form-label']}>
+              Всички категории
+            </Form.Label>
+            <Form.Control
+              onChange={handleSubCatSelect}
+              as="select"
+              value={state.subCategory}
+              size="lg"
+            >
+              <>
+                {state.subCategory === 'all' && <option>Всички</option>}
+                {subCatsList?.map((sub) => (
+                  <option key={sub} value={sub}>
+                    {sub}
+                  </option>
+                ))}
+              </>
+            </Form.Control>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label className={styles['form-label']}>Цена</Form.Label>
+            <Form.Control
+              name="priceFrom"
+              onBlur={handlePriceInput}
+              required
+              type="number"
+              placeholder="От"
+              size="lg"
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Control
+              name="priceTo"
+              onBlur={handlePriceInput}
+              className="align-middle"
+              required
+              type="number"
+              placeholder="До"
+              size="lg"
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label className={styles['form-label']}>
+              Доставката се поема от
+            </Form.Label>
+            <Form.Control
+              value={state.deliveryCondition}
+              onChange={handleDeliveryChange}
+              as="select"
+              size="lg"
+            >
+              <option>Виж всички</option>
+              <option>продавача</option>
+              <option>купувача</option>
+              <option>лично предаване</option>
+            </Form.Control>
+          </Form.Group>
+        </ButtonToolbar>
+      </article>
     </>
   )
 }

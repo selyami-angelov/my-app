@@ -7,16 +7,17 @@ import CardContainer from '../../components/CardContainer/CardContainer'
 import CatFigure from '../../components/Categories/Categories.js'
 import Footer from '../../components/Footer/Footer.js'
 import HomeOverview from '../../components/HomeOverview/HomeOverview.js'
-import { getAds } from '../../services/ad.js'
+import { getAds, getLastCreatedProducts } from '../../services/ad.js'
 import { useNavigate } from 'react-router'
 import './home.css'
 
-const Home = (props) => {
-  const [ads, setAds] = useState([])
-  const navigate = useNavigate()
+const Home = () => {
+  const [products, setProducts] = useState([])
 
   useEffect(() => {
-    getAds(setAds)
+    getLastCreatedProducts(10).then((result) => {
+      setProducts(result)
+    })
   }, [])
 
   return (
@@ -26,8 +27,8 @@ const Home = (props) => {
       <CardContainer
         cards={
           <Row className="g-4">
-            {ads.length &&
-              ads.map((doc) => (
+            {products.length &&
+              products.map((doc) => (
                 <Col key={doc.id} xs lg="3">
                   <ProductCard
                     id={doc.id}
@@ -43,7 +44,7 @@ const Home = (props) => {
               ))}
           </Row>
         }
-        title="Промо обяви"
+        title="Последно добавени обяви"
       ></CardContainer>
       <HomeOverview />
       <Footer />

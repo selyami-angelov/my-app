@@ -14,6 +14,7 @@ const ProductCardLandscape = (props) => {
     id,
     category,
     subCategory,
+    userId,
   } = props
   const navigate = useNavigate()
 
@@ -28,10 +29,10 @@ const ProductCardLandscape = (props) => {
       </article>
       <article className={styles['product-info']}>
         <article className={styles['card-header']}>
-          <h4>{title}</h4>
-          <h4>
+          <h6>{title}</h6>
+          <p>
             {price} {currency}
-          </h4>
+          </p>
         </article>
         <article className={styles['card-footer']}>
           <article>
@@ -50,7 +51,7 @@ const ProductCardLandscape = (props) => {
               </label>
             </article>
           </article>
-          <HeartIcon productId={id} />
+          <HeartIcon userId={userId} productId={id} />
         </article>
       </article>
     </article>

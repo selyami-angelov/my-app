@@ -24,7 +24,7 @@ const ProductPage = (props) => {
       })
   }, [])
 
-  console.log(ad, 'ad')
+  console.log(params, 'ad')
 
   return (
     <>
@@ -59,6 +59,9 @@ const ProductPage = (props) => {
                 currency={ad.currency}
                 category={ad.category_bg}
                 subCategory={ad.sub_category_bg}
+                productId={params.productId}
+                userId={ad.userId}
+                createdDate={ad.created_date}
               />
             </Col>
           </Row>

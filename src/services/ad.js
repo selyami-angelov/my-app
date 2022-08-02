@@ -8,6 +8,8 @@ import {
   where,
   updateDoc,
   deleteDoc,
+  orderBy,
+  limit,
 } from 'firebase/firestore'
 import { db } from '../configs/firebase-config.js'
 
@@ -54,8 +56,17 @@ export const updateProduct = async (id, data) => {
 
 export const getProductsQuery = async (field, contains) => {
   const productsRef = collection(db, 'ads')
-  console.log(productsRef)
   const q = query(productsRef, where(field, '==', contains))
+  const querySnapshot = await getDocs(q)
+  return querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    data: doc.data(),
+  }))
+}
+
+export const getLastCreatedProducts = async (quantity) => {
+  const productsRef = collection(db, 'ads')
+  const q = query(productsRef, orderBy('created_date', 'desc'), limit(quantity))
   const querySnapshot = await getDocs(q)
   return querySnapshot.docs.map((doc) => ({
     id: doc.id,

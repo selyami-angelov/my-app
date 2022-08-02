@@ -1,15 +1,15 @@
 .landscape-card {
   display: flex;
   background-color: #ffffff;
-  padding: 20px;
+  padding: 8px;
 }
 .landscape-card:hover {
   cursor: pointer;
 }
 
 .img-container {
-  width: 215px;
-  height: 152px;
+  width: 200px;
+  height: 151px;
 }
 .img-container img {
   width: 100%;
@@ -21,10 +21,27 @@
   flex-direction: column;
   flex-grow: 1;
   justify-content: space-between;
+  padding: 0 1rem;
 }
 .card-header {
   display: flex;
   justify-content: space-between;
+}
+.card-header p {
+  font-size: 16px;
+  line-height: 20px;
+  color: #002f34;
+  font-weight: 700;
+  align-self: flex-end;
+  margin: 0;
+}
+.card-header h6 {
+  font-size: 20px;
+  line-height: 22px;
+  color: #002f34;
+  margin: 5px 0;
+  font-weight: 400;
+  max-width: 70%;
 }
 .card-footer {
   display: flex;

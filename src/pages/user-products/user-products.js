@@ -11,7 +11,6 @@ import styles from './user-products.module.css'
 const UserProducts = () => {
   const { state } = useLocation()
   const [userProducts, setUserProducts] = useState([])
-  const { currentUser } = useContext(AuthContext)
 
   useEffect(() => {
     getProductsQuery('userId', state?.userId)
@@ -41,6 +40,7 @@ const UserProducts = () => {
                 category={product.data.category_bg}
                 subCategory={product.data.sub_category_bg}
                 url={product.data.images[0]?.url}
+                userId={product.data.userId}
               ></ProductCardLandscape>
             </UserProductCard>
           ))}
