@@ -12,8 +12,12 @@ import Price from '../../components/CreateProductForm/Price/Price.js'
 import { AuthContext } from '../../context/AuthContext.js'
 import { FormContext } from '../../context/FormContext.js'
 import { FormErrorsContext } from '../../context/FormErrorsContext.js'
-import { createAd, getAd, updateProduct } from '../../services/ad.js'
-import { deleteImages, uploadImg } from '../../services/uploadImg.js'
+import {
+  createProduct,
+  getProduct,
+  updateProduct,
+} from '../../services/product.js'
+import { deleteImages, uploadImg } from '../../services/image.js'
 import styles from './CreateProductForm.module.css'
 import { INITIAL_FORM_VALUES, validateForm } from './utils.js'
 
@@ -30,7 +34,7 @@ const CreateProductForm = () => {
   //set form if edit mode
   useEffect(() => {
     if (productId) {
-      getAd(productId).then((result) => {
+      getProduct(productId).then((result) => {
         setFormData(result)
         setImages(result.images.map((img) => ({ img: '', url: img.url })))
         setEditProduct(result)
@@ -62,16 +66,16 @@ const CreateProductForm = () => {
 
     if (isValid) {
       const cyrillic = new cyrillicToTranslit()
-      createAd({
+      createProduct({
         ...form,
         userId: currentUser.uid,
         created_date: new Date().getTime(),
         category: cyrillic.transform(formData.category, '-').toLowerCase(),
         category_bg: formData.category,
         sub_category: cyrillic
-          .transform(formData.subCategory.replace(', ', ' '), '-')
+          .transform(formData.sub_category.replace(', ', ' '), '-')
           .toLowerCase(),
-        sub_category_bg: formData.subCategory,
+        sub_category_bg: formData.sub_category,
       })
 
       setFormData(INITIAL_FORM_VALUES)

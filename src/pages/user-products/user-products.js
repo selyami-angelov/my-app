@@ -5,7 +5,7 @@ import ProductCardLandscape from '../../components/ProductCardLandscape/ProductC
 import SearchToolbar from '../../components/SearchToolbar/SearchToolbar.js'
 import { AuthContext } from '../../context/AuthContext.js'
 import UserProductCard from '../../hoc/UserProductCard.js'
-import { getProductsQuery } from '../../services/ad.js'
+import { getProductsQuery } from '../../services/product.js'
 import styles from './user-products.module.css'
 
 const UserProducts = () => {

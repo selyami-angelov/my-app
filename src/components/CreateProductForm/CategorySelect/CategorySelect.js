@@ -44,11 +44,12 @@ const CategorySelect = () => {
 
   const onSubCatClick = (e) => {
     const subCatName = e.target.innerText
-    setFormData((prev) => ({ ...prev, subCategory: subCatName }))
+    setFormData((prev) => ({ ...prev, sub_category: subCatName }))
     setFormErrors((prev) => ({ ...prev, category: undefined }))
     setPopOver({ target: undefined, show: false })
   }
 
+  console.log(formData.sub_category, 'form data cat')
   return (
     <Container className={styles['ad-cat']}>
       <Form.Label>Заглавие*</Form.Label>
@@ -78,7 +79,7 @@ const CategorySelect = () => {
             showSubItem={onCatClick}
             icon={true}
             value={`${formData.category}${
-              formData.subCategory && '/ ' + formData.subCategory
+              formData.sub_category && '/ ' + formData.sub_category
             }`}
             labelText={selectedCategory.label}
             target={popOver.target}

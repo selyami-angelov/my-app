@@ -5,3 +5,14 @@
   background-color: #f2f4f5;
   padding-top: 2rem;
 }
+.search {
+  background-color: #002f34;
+  color: white;
+  font-weight: bold;
+  border: 1px solid #002f34;
+}
+.search:hover {
+  background-color: white;
+  color: #002f34;
+  border: 1px solid #002f34;
+}

@@ -7,8 +7,7 @@ import CardContainer from '../../components/CardContainer/CardContainer'
 import CatFigure from '../../components/Categories/Categories.js'
 import Footer from '../../components/Footer/Footer.js'
 import HomeOverview from '../../components/HomeOverview/HomeOverview.js'
-import { getAds, getLastCreatedProducts } from '../../services/ad.js'
-import { useNavigate } from 'react-router'
+import { getLastCreatedProducts } from '../../services/product.js'
 import './home.css'
 
 const Home = () => {

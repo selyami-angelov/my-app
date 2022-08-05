@@ -13,19 +13,9 @@ import {
 } from 'firebase/firestore'
 import { db } from '../configs/firebase-config.js'
 
-export const createAd = (data) => {
+export const createProduct = (data) => {
   const productsRef = doc(collection(db, 'ads'))
   setDoc(productsRef, data)
-}
-
-export const getAds = async (setAds) => {
-  const querySnapshot = await getDocs(collection(db, 'ads'))
-
-  const products = querySnapshot.docs.map((doc) => ({
-    id: doc.id,
-    data: doc.data(),
-  }))
-  setAds(products)
 }
 
 export const getProductDoc = async (productId) => {
@@ -38,7 +28,7 @@ export const getProductDoc = async (productId) => {
   }
 }
 
-export const getAd = async (id) => {
+export const getProduct = async (id) => {
   const docRef = doc(db, 'ads', id)
   const docSnap = await getDoc(docRef)
 
@@ -54,16 +44,6 @@ export const updateProduct = async (id, data) => {
   await updateDoc(docRef, data)
 }
 
-export const getProductsQuery = async (field, contains) => {
-  const productsRef = collection(db, 'ads')
-  const q = query(productsRef, where(field, '==', contains))
-  const querySnapshot = await getDocs(q)
-  return querySnapshot.docs.map((doc) => ({
-    id: doc.id,
-    data: doc.data(),
-  }))
-}
-
 export const getLastCreatedProducts = async (quantity) => {
   const productsRef = collection(db, 'ads')
   const q = query(productsRef, orderBy('created_date', 'desc'), limit(quantity))
@@ -76,4 +56,15 @@ export const getLastCreatedProducts = async (quantity) => {
 
 export const deleteProduct = async (id) => {
   await deleteDoc(doc(db, 'ads', id))
+}
+
+//query
+export const getProductsQuery = async (field, contains) => {
+  const productsRef = collection(db, 'ads')
+  const q = query(productsRef, where(field, '==', contains))
+  const querySnapshot = await getDocs(q)
+  return querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    data: doc.data(),
+  }))
 }

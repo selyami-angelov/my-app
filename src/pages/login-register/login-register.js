@@ -1,24 +1,21 @@
 import React, { useState, useContext, useEffect } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import { auth, providers } from '../../configs/firebase-config'
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  FacebookAuthProvider,
-  signInWithPopup,
-  GoogleAuthProvider,
-  fetchSignInMethodsForEmail,
-} from 'firebase/auth'
 import { useNavigate } from 'react-router'
 import { AuthContext } from '../../context/AuthContext.js'
 import PasswordPromp from '../../components/PasswordPromp/PasswordPromp.js'
 import SignOnConfirmProp from '../../components/SignOnConfirmProp/SignOnConfirmProp.js'
-import { Card, Container } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import styles from './login-register.module.css'
 import Nav from 'react-bootstrap/Nav'
 import Alert from 'react-bootstrap/Alert'
 import Footer from '../../components/Footer/Footer.js'
+import {
+  googleLogin,
+  login,
+  register,
+  facebookLogin,
+} from '../../services/auth.js'
 
 const LoginPage = () => {
   const [form, setForm] = useState({ email: '', password: '' })
@@ -41,97 +38,29 @@ const LoginPage = () => {
   const navigate = useNavigate()
   const { dispatch } = useContext(AuthContext)
 
-  const register = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault()
-    createUserWithEmailAndPassword(auth, form.email, form.password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user
-        //SAVE TO LOCALE STORAGE
-        dispatch({ type: 'LOGIN', payload: user })
-        navigate('/')
-      })
-      .catch((error) => {
-        const errorCode = error.code
-        const errorMessage = error.message
-        console.log(errorCode)
-        //TODO:
-        if (errorMessage === 'Firebase: Error (auth/email-already-in-use).') {
-          setErr({ errMessage: 'Имейл адресът вече съществува!', show: true })
-        }
-      })
+    register(form.email, form.password, dispatch, navigate, setErr)
   }
 
-  const login = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault()
-    signInWithEmailAndPassword(auth, form.email, form.password)
-      .then((userCredential) => {
-        dispatch({ type: 'LOGIN', payload: userCredential.user })
-        navigate('/')
-      })
-      .catch((error) => {
-        console.log(error.message)
-        if (error.message === 'Firebase: Error (auth/invalid-email).') {
-          setErr({ errMessage: 'Невалиден имейл или папрола!', show: true })
-        }
-        if (error.message === 'Firebase: Error (auth/wrong-password).') {
-          setErr({ errMessage: 'Неправилна парола!', show: true })
-        }
-      })
+    login(form.email, form.password, dispatch, navigate, setErr)
   }
 
-  const fbLogin = (e) => {
-    e.preventDefault()
-    const provider = new FacebookAuthProvider()
-    provider.setCustomParameters({
-      display: 'popup',
-    })
-
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const user = result.user
-        dispatch({ type: 'LOGIN', payload: user })
-        navigate('/')
-      })
-      .catch((error) => {
-        if (error.code === 'auth/account-exists-with-different-credential') {
-          const credentials = FacebookAuthProvider.credentialFromError(error)
-          const email = error.customData.email
-          fetchSignInMethodsForEmail(auth, email).then((methods) => {
-            if (methods[0] === 'password') {
-              //TODO:
-              setOnPaswordPrompData({
-                auth,
-                email,
-                credentials,
-                open: true,
-              })
-              return
-            }
-
-            const provider = providers[methods[0]]
-            setOnSignConfirmData({
-              auth,
-              provider,
-              credentials,
-              open: true,
-            })
-          })
-        }
-      })
+  const handleGoogleLogin = () => {
+    googleLogin(dispatch, navigate, setErr)
   }
 
-  const googleLogin = () => {
-    const provider = new GoogleAuthProvider()
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const user = result.user
-        dispatch({ type: 'LOGIN', payload: user })
-        navigate('/')
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+  const handleFacebookLogin = (e) => {
+    e.preventDefault()
+    facebookLogin(
+      dispatch,
+      navigate,
+      setOnPaswordPrompData,
+      setOnSignConfirmData,
+      setErr
+    )
   }
 
   useEffect(() => {
@@ -174,7 +103,7 @@ const LoginPage = () => {
           </Nav>
           <div className={`d-grid gap-2 ${styles['social-buttons-container']}`}>
             <Button
-              onClick={fbLogin}
+              onClick={handleFacebookLogin}
               className={styles['social-button']}
               variant="outline-dark"
               size="lg"
@@ -185,7 +114,7 @@ const LoginPage = () => {
               <label>Вход с Facebook</label>
             </Button>
             <Button
-              onClick={googleLogin}
+              onClick={handleGoogleLogin}
               className={styles['social-button']}
               variant="outline-dark"
               size="lg"
@@ -229,7 +158,7 @@ const LoginPage = () => {
           </Form>
           <div className={`d-grid gap-2 ${styles['log-button']}`}>
             <Button
-              onClick={isLogin ? login : register}
+              onClick={isLogin ? handleLogin : handleRegister}
               variant="dark"
               size="lg"
             >

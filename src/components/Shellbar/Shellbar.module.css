@@ -14,6 +14,7 @@
   opacity: 1;
   transition-property: opacity;
   transition-duration: 0.5s;
+  background-color: #002f34;
 }
 .hidden {
   display: none;
@@ -49,13 +50,13 @@
 }
 .create {
   background-color: white;
-  color: #212529;
+  color: #002f34;
   font-weight: bold;
   padding: 6px 20px;
   border: 5px solid white;
 }
 .create:hover {
-  background-color: #212529;
+  background-color: #002f34;
   color: white;
   border: 5px solid white;
 }

@@ -5,13 +5,22 @@
   margin-top: 34px;
 }
 .location-icon {
-  font-size: 24px;
-  margin-right: 1rem;
+  font-size: 18px;
+  margin-right: 0.7rem;
 }
-.location-text-content p {
-  margin: 0;
-  line-height: 19px;
+.location-text-content p:first-child {
+  font-size: 16px;
+  color: #002f34;
+  margin: 0px;
+  font-weight: 700;
+  line-height: 18px;
+  word-break: break-word;
+}
+.location-text-content p:last-child {
   font-size: 14px;
+  line-height: 26px;
+  color: #002f34;
+  margin: 0;
 }
 .google-map {
   width: 60%;
@@ -24,4 +33,13 @@
 }
 .card-body {
   padding: 24px;
+}
+.title {
+  font-size: 14px;
+  line-height: 18px;
+  color: #002f34;
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 20px;
 }

@@ -11,7 +11,7 @@ export const VALID_PHONE = 'Моля, въведете валиден телеф
 
 export const formValidationSchema = {
   category: string().required(REQUIRED_FIELD),
-  subCategory: string().required(REQUIRED_FIELD),
+  sub_category: string().required(REQUIRED_FIELD),
   contact_person: string().required(REQUIRED_FIELD),
   delivery: string().required(REQUIRED_FIELD),
   description: string().min(80, MIN_LEN_DESCRIPTION).required(REQUIRED_FIELD),

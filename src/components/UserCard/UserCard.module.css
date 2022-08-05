@@ -12,6 +12,7 @@
 
 .card-body i {
   font-size: 37px;
+  color: #002f34;
 }
 
 .all-user-products {
@@ -39,4 +40,32 @@
 }
 .all-user-products:hover {
   color: #002f34;
+}
+.title {
+  font-size: 14px;
+  line-height: 18px;
+  color: #002f34;
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.user-name {
+  font-size: 20px;
+  line-height: 22px;
+  font-weight: 400;
+  color: #002f34;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 4px;
+}
+.user-info p {
+  font-size: 14px;
+  line-height: 18px;
+  color: #7f9799;
+}
+
+.user-info p > span {
+  font-weight: 700;
 }

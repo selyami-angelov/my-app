@@ -4,7 +4,7 @@ import CardContainer from '../../components/CardContainer/CardContainer.js'
 import ProductCard from '../../components/ProductCard/ProductCard.js'
 import SearchToolbar from '../../components/SearchToolbar/SearchToolbar.js'
 import useFollowedProducts from '../../hook/useFollowedProducts.js'
-import { getAd, getProductDoc } from '../../services/ad.js'
+import { getAd, getProductDoc } from '../../services/product.js'
 
 const FollowedProducts = () => {
   const [products, setProducts] = useState([])

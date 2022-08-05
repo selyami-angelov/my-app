@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import { getAd } from '../../services/ad.js'
+import { getProduct } from '../../services/product.js'
 import SearchToolbar from '../../components/SearchToolbar/SearchToolbar.js'
 import UserCard from '../../components/UserCard/UserCard.js'
 import UserLocationCard from '../../components/UserLocationCard/UserLocationCard.js'
@@ -15,7 +15,7 @@ const ProductPage = (props) => {
 
   const adId = params.productId
   useEffect(() => {
-    getAd(adId)
+    getProduct(adId)
       .then((result) => {
         setAd(result)
       })

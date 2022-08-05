@@ -25,7 +25,6 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "init": "npm install  --legacy-peer-deps",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

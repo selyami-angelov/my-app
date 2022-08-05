@@ -1,6 +1,6 @@
 import styles from './Products.module.css'
 import { useEffect, useState } from 'react'
-import { getProductsQuery } from '../../services/ad.js'
+import { getProductsQuery } from '../../services/product.js'
 import { Container } from 'react-bootstrap'
 import { useParams, useSearchParams } from 'react-router-dom'
 import ProductCardLandscape from '../../components/ProductCardLandscape/ProductCardLandscape.js'

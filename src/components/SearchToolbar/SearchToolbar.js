@@ -90,7 +90,12 @@ const SearchToolbar = (props) => {
           target={target}
           onSubItemClick={onCityClick}
         />
-        <Button name={value} onClick={handleSearch} variant="dark">
+        <Button
+          className={styles['search']}
+          name={value}
+          onClick={handleSearch}
+          variant="outline-dark"
+        >
           Търсене
         </Button>
       </InputGroup>

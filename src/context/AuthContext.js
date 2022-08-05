@@ -1,5 +1,5 @@
 import { createContext, useEffect, useReducer } from 'react'
-import { getUserDoc, createUserDoc } from '../services/userData.js'
+import { getUserDoc, createUserDoc } from '../services/user.js'
 import AuthReducer from './AuthReducer'
 
 const INITIAL_STATE = {

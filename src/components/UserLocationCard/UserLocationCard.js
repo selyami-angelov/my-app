@@ -22,7 +22,7 @@ const UserLocationCard = (props) => {
     <>
       <Card>
         <Card.Body className={styles['card-body']}>
-          <Card.Title>
+          <Card.Title className={styles['title']}>
             <i
               className={`fa-solid fa-location-dot ${styles['location-icon']}`}
             ></i>
@@ -30,9 +30,8 @@ const UserLocationCard = (props) => {
           </Card.Title>
           <div className={styles['card-content']}>
             <article className={styles['location-text-content']}>
-              <Card.Subtitle>гр. {city}</Card.Subtitle>
-              <p>Област</p>
-              <p>{area}</p>
+              <p>гр. {city}</p>
+              <p>Област {area}</p>
             </article>
             <article className={styles['google-map']}>
               <Map city={city} />

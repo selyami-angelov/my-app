@@ -61,9 +61,11 @@ export const validateForm = async (form, setFormErrors, schema, field) => {
     try {
       const result = await schema[fieldName].validate(await form[fieldName])
       setFormErrors((prev) => ({ ...prev, [fieldName]: undefined }))
-      console.log(result.message, 'result')
     } catch (error) {
       isValid = false
+      console.log('in catch')
+      console.log(fieldName, 'fieldName')
+      console.log(error.message, 'error in catch')
       const splitErrMessage = error.message.split(',')[0].trim()
       if (splitErrMessage === 'this must be a `number` type') {
         setFormErrors((prev) => ({
@@ -76,5 +78,6 @@ export const validateForm = async (form, setFormErrors, schema, field) => {
     }
   }
 
+  console.log(isValid, 'isvalid')
   return isValid
 }

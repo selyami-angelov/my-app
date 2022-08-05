@@ -3,7 +3,6 @@ import {
   getDownloadURL,
   ref,
   uploadBytes,
-  uploadBytesResumable,
 } from 'firebase/storage'
 import { nanoid } from 'nanoid'
 import { storage } from '../configs/firebase-config'

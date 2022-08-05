@@ -1,18 +1,55 @@
 .facebook {
-  color: #2f4d93;
+  font-size: 24px;
+  margin-right: 10px;
+  color: #4259a6;
 }
 .google {
+  font-size: 24px;
+  margin-right: 10px;
   color: #d0463b;
+}
+.social-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  background: #fff;
+  color: #002f34;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0 0 0 2px #002f34;
+  border: none;
+  padding: 10px 16px;
+}
+.social-button:hover {
+  background: #fff;
+  color: #002f34;
 }
 .social-buttons-container,
 .log-button {
   margin: 1.5rem 3rem;
 }
+.log-button button {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  background: #002f34;
+  cursor: pointer;
+  box-shadow: 0 0 0 2px #002f34;
+  border: none;
+  padding: 10px 16px;
+}
+.log-button button:hover {
+  background: #002f34;
+}
 .social-button i {
   width: 24px;
 }
 .social-button label {
-  width: 200px;
+  width: 150px;
+  text-align: start;
+  cursor: pointer;
 }
 .or-label {
   display: flex;
@@ -57,9 +94,9 @@
   background-color: #3a77ff;
 }
 .card {
-  width: 30%;
-  border: unset;
-  border-radius: 0.8rem;
+  width: 400px;
+  border: none;
+  border-radius: 4px;
   overflow: hidden;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,

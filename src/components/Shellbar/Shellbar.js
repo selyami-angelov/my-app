@@ -60,7 +60,7 @@ const ShellBar = () => {
       style={!showNav ? { opacity: 0 } : { opacity: 1 }}
       className={styles[`nav`]}
     >
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="lg">
         <Container>
           <Navbar.Brand>
             <Link className={styles['logo']} to="/">

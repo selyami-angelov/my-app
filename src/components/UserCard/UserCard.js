@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 import styles from './UserCard.module.css'
 import { Nav } from 'react-bootstrap'
 import { useNavigate } from 'react-router'
-import { getUserDoc } from '../../services/userData.js'
+import { getUserDoc } from '../../services/user.js'
 
 const UserCard = (props) => {
   const { userName, userId, phone } = props
@@ -28,11 +28,11 @@ const UserCard = (props) => {
   return (
     <Card>
       <Card.Body className={styles['card-content']}>
-        <Card.Title>Потребител</Card.Title>
+        <Card.Title className={styles['title']}>Потребител</Card.Title>
         <article className={styles['card-body']}>
           <i className="fa-solid fa-circle-user"></i>
           <article className={styles['user-info']}>
-            <Card.Title>{userName}</Card.Title>
+            <Card.Title className={styles['user-name']}>{userName}</Card.Title>
             <p>
               В XLO от{' '}
               <span>{new Date(+userDoc.createdAt).toLocaleString()}</span>

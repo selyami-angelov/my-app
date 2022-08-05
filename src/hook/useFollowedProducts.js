@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../context/AuthContext.js'
-import { getUserDoc } from '../services/userData.js'
+import { getUserDoc } from '../services/user.js'
 
 const useFollowedProducts = () => {
   const { currentUser } = useContext(AuthContext)
