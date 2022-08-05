@@ -80,12 +80,7 @@
   font-weight: bold;
   padding-top: 1rem;
 }
-.err-strip {
-  position: absolute;
-  bottom: 0;
-  right: 10%;
-  left: 10%;
-}
+
 .main {
   display: flex;
   justify-content: center;

@@ -8,7 +8,6 @@ import SignOnConfirmProp from '../../components/SignOnConfirmProp/SignOnConfirmP
 import { Card } from 'react-bootstrap'
 import styles from './login-register.module.css'
 import Nav from 'react-bootstrap/Nav'
-import Alert from 'react-bootstrap/Alert'
 import Footer from '../../components/Footer/Footer.js'
 import {
   googleLogin,
@@ -16,6 +15,7 @@ import {
   register,
   facebookLogin,
 } from '../../services/auth.js'
+import useErrorStrip from '../../hook/useErrorStrip.js'
 
 const LoginPage = () => {
   const [form, setForm] = useState({ email: '', password: '' })
@@ -33,23 +33,23 @@ const LoginPage = () => {
     open: false,
   })
   const [isLogin, setIsLogin] = useState(true)
-  const [err, setErr] = useState({ errMessage: '', show: false })
 
   const navigate = useNavigate()
+  const errorStrip = useErrorStrip()
   const { dispatch } = useContext(AuthContext)
 
   const handleRegister = (e) => {
     e.preventDefault()
-    register(form.email, form.password, dispatch, navigate, setErr)
+    register(form.email, form.password, dispatch, navigate)
   }
 
   const handleLogin = (e) => {
     e.preventDefault()
-    login(form.email, form.password, dispatch, navigate, setErr)
+    login(form.email, form.password, dispatch, navigate)
   }
 
   const handleGoogleLogin = () => {
-    googleLogin(dispatch, navigate, setErr)
+    googleLogin(dispatch, navigate)
   }
 
   const handleFacebookLogin = (e) => {
@@ -58,18 +58,9 @@ const LoginPage = () => {
       dispatch,
       navigate,
       setOnPaswordPrompData,
-      setOnSignConfirmData,
-      setErr
+      setOnSignConfirmData
     )
   }
-
-  useEffect(() => {
-    if (err.show) {
-      setTimeout(() => {
-        setErr({ errMessage: '', show: false })
-      }, 5000)
-    }
-  }, [err])
 
   return (
     <>
@@ -180,11 +171,7 @@ const LoginPage = () => {
         </Card>
       </main>
       <Footer />
-      {err.show && (
-        <Alert className={styles['err-strip']} variant="danger">
-          {err.errMessage}
-        </Alert>
-      )}
+      {errorStrip}
     </>
   )
 }
