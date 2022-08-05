@@ -2,6 +2,8 @@
 
 xLO is a free online platform where you can sell your own stuffs. It’s a great place to sell used cars, furniture, and even old houses.
 
+Create you first ad at https://react---xlo.web.app/ :partying_face:
+
 **This project is developed for educational purpose, inspired by www.olx.bg.**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
