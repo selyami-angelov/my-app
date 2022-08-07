@@ -7,6 +7,7 @@ import {
   GoogleAuthProvider,
 } from 'firebase/auth'
 
+//prod
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -16,6 +17,16 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_APP_ID,
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 }
+
+//dev
+// const firebaseConfig = {
+//   apiKey: 'AIzaSyAKML5f5uLvidhMIF-cI096JHofpOECs14',
+//   authDomain: 'react--xlo-dev.firebaseapp.com',
+//   projectId: 'react--xlo-dev',
+//   storageBucket: 'react--xlo-dev.appspot.com',
+//   messagingSenderId: '408138765253',
+//   appId: '1:408138765253:web:3d07e2365cd8dcd5aab1ac',
+// }
 
 export const providers = {
   'google.com': new GoogleAuthProvider(),
