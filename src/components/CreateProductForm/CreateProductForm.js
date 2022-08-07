@@ -43,7 +43,7 @@ const CreateProductForm = () => {
   }, [productId])
 
   const handleSubmit = async () => {
-    const form = { ...formData }
+    const form = JSON.parse(JSON.stringify(formData))
 
     //upload images
     if (images.some((img) => img)) {
@@ -78,6 +78,7 @@ const CreateProductForm = () => {
         sub_category_bg: formData.sub_category,
       })
 
+      setImages(new Array(8).fill(undefined))
       setFormData(INITIAL_FORM_VALUES)
       navigate('/')
     }
