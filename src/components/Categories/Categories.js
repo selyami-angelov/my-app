@@ -34,10 +34,10 @@ const CatFigure = () => {
   const subItemClick = (e) => {
     const cyrillicToTranslit = new CyrillicToTranslit()
     const category = cyrillicToTranslit
-      .transform(target.innerText, '-')
+      .transform(target.innerText.replaceAll(', ', ' '), '-')
       .toLowerCase()
     const subCategory = cyrillicToTranslit
-      .transform(e.target.innerText.replace(', ', ' '), '-')
+      .transform(e.target.innerText.replaceAll(', ', ' '), '-')
       .toLowerCase()
 
     navigate(`/products/${category}/${subCategory}`, {
