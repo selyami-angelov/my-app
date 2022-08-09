@@ -153,8 +153,11 @@ const CreateProductForm = () => {
       <Description />
       <Price />
       <ContactInfo />
-      <Container className="d-flex justify-content-end">
+      <Container
+        className={`d-flex justify-content-end ${styles['btn-container']}`}
+      >
         <Button
+          className={styles['add-edit']}
           onClick={editMode ? handleEdit : handleSubmit}
           variant="dark"
           type="submit"

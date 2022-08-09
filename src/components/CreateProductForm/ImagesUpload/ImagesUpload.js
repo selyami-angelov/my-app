@@ -16,9 +16,11 @@ export const ImagesUpload = (props) => {
 
   return (
     <Container className={styles['add-image-section']}>
-      <h4>Снимки</h4>
-      <label>Първата снимка ще бъде основната в обявата ти.</label>
-      <Row xs="auto" className={`g-2 ${styles['imgs-row']}`}>
+      <h4 className={styles['title']}>Снимки</h4>
+      <label className={styles['label']}>
+        Първата снимка ще бъде основната в обявата ти.
+      </label>
+      <Row className={`g-2 p-2 ${styles['imgs-row']}`}>
         {images.map((img, index) => (
           <Col key={index}>
             <Image
@@ -32,6 +34,7 @@ export const ImagesUpload = (props) => {
       </Row>
       <Form.Group controlId="formFileLg" className="mb-3">
         <Form.Control
+          className="mt-3"
           isInvalid={formErrors.images}
           onChange={handleImagesSelect}
           type="file"

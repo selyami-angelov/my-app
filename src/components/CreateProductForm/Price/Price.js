@@ -24,8 +24,10 @@ const Price = () => {
 
   return (
     <Container className={styles['price-section']}>
-      <Form.Label htmlFor="basic-url">Цена*</Form.Label>
-      <InputGroup className="mb-1">
+      <Form.Label className={styles['price-label']} htmlFor="basic-url">
+        Цена*
+      </Form.Label>
+      <InputGroup size="lg" className="mb-4">
         <Form.Control
           onChange={(e) => onInput(e, setFormData)}
           onBlur={validateOnBlur}
@@ -37,18 +39,20 @@ const Price = () => {
         <Form.Control.Feedback type="invalid">
           {formErrors.price}
         </Form.Control.Feedback>
+      </InputGroup>
+      <InputGroup size="lg" className="mb-4">
         <Form.Select
           data-name="currency"
           onChange={(e) => onInput(e, setFormData)}
-          size="lg"
         >
           <option>лв</option>
           <option>eur</option>
         </Form.Select>
       </InputGroup>
       <div key={'inline-radio'} className="mb-3">
-        <h5>Доставката се поема от</h5>
+        <h5 className={styles['delivery-cond']}>Доставката се поема от</h5>
         <Form.Check
+          className="mt-2"
           onChange={setDeliveryCondition}
           checked={formData.delivery === 'купувача'}
           inline

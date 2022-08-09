@@ -16,9 +16,12 @@ const Description = () => {
   }
   return (
     <Container className={styles['description-section']}>
-      <Form.Label htmlFor="basic-url">Описание*</Form.Label>
+      <Form.Label className={styles['descr-label']} htmlFor="basic-url">
+        Описание*
+      </Form.Label>
       <InputGroup size="lg">
         <Form.Control
+          className={styles['descr-input']}
           name="description"
           data-name="description"
           onChange={(e) => onInput(e, setFormData)}

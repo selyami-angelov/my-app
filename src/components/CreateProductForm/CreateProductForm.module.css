@@ -14,7 +14,11 @@
   width: 1200px;
 }
 .add-ad-title {
-  text-align: center;
+  font-size: 32px;
+  line-height: 34px;
+  font-weight: 700;
+  color: rgb(0, 47, 52);
+  margin: 48px 37px 30px;
 }
 .imgs-row {
   width: 700px;
@@ -29,4 +33,23 @@
 }
 .button-group {
   display: block;
+}
+.btn-container {
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  margin-bottom: 10px;
+  padding: 32px;
+}
+
+.add-edit {
+  background-color: #002f34;
+  border: 5px solid #002f34;
+  color: white;
+  font-weight: bold;
+  padding: 6px 20px;
+}
+.add-edit:hover {
+  border: 5px solid #002f34;
+  color: #002f34;
+  background-color: white;
 }

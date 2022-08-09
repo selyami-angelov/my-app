@@ -49,10 +49,9 @@ const CategorySelect = () => {
     setPopOver({ target: undefined, show: false })
   }
 
-  console.log(formData.sub_category, 'form data cat')
   return (
     <Container className={styles['ad-cat']}>
-      <Form.Label>Заглавие*</Form.Label>
+      <Form.Label className={styles['title-label']}>Заглавие*</Form.Label>
       <InputGroup size="lg">
         <Form.Control
           value={formData.title}
@@ -69,7 +68,9 @@ const CategorySelect = () => {
       <br />
       {!productId && (
         <>
-          <Form.Label htmlFor="basic-url">Категория*</Form.Label>
+          <Form.Label className={styles['category-label']} htmlFor="basic-url">
+            Категория*
+          </Form.Label>
           <NestedSelect
             title={'Избери Категория'}
             name={'category'}

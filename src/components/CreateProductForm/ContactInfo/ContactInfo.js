@@ -56,8 +56,10 @@ const ContactInfo = () => {
 
   return (
     <Container className={styles['contacts']}>
-      <h4>Данни за контакт</h4>
-      <Form.Label htmlFor="basic-url">Локация*</Form.Label>
+      <h4 className={styles['contacts-title']}>Данни за контакт</h4>
+      <Form.Label className={styles['label']} htmlFor="basic-url">
+        Локация*
+      </Form.Label>
       <NestedSelect
         title={'Избери локация'}
         name={'city'}
@@ -71,7 +73,9 @@ const ContactInfo = () => {
         target={popOver.target}
         onSubItemClick={onCityClick}
       />
-      <Form.Label htmlFor="basic-url">Лице за контакт*</Form.Label>
+      <Form.Label className={styles['label']} htmlFor="basic-url">
+        Лице за контакт*
+      </Form.Label>
       <InputGroup size="lg" className={`mb-1 ${styles['contact-input']}`}>
         <Form.Control
           value={formData.contact_person}
@@ -86,7 +90,9 @@ const ContactInfo = () => {
           {formErrors.contact_person}
         </Form.Control.Feedback>
       </InputGroup>
-      <Form.Label htmlFor="basic-url">Имейл адрес</Form.Label>
+      <Form.Label className={styles['label']} htmlFor="basic-url">
+        Имейл адрес
+      </Form.Label>
       <InputGroup size="lg" className={`mb-1 ${styles['contact-input']}`}>
         <Form.Control
           disabled={true}
@@ -97,7 +103,9 @@ const ContactInfo = () => {
           aria-describedby="basic-addon1"
         />
       </InputGroup>
-      <Form.Label htmlFor="basic-url">Телефонен номер</Form.Label>
+      <Form.Label className={styles['label']} htmlFor="basic-url">
+        Телефонен номер
+      </Form.Label>
       <InputGroup size="lg" className={`mb-1 ${styles['contact-input']}`}>
         <Form.Control
           value={formData.phone}
