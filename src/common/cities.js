@@ -8349,17 +8349,6 @@ export const cities = [
     population_proper: '',
   },
   {
-    city: 'Iskar',
-    lat: '43.6708',
-    lng: '24.4523',
-    country: 'Bulgaria',
-    iso2: 'BG',
-    admin_name: 'Pleven',
-    capital: 'minor',
-    population: '',
-    population_proper: '',
-  },
-  {
     city: 'Sitovo',
     lat: '44.0273',
     lng: '27.0198',
