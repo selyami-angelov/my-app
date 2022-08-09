@@ -18,7 +18,8 @@
   line-height: 34px;
   font-weight: 700;
   color: rgb(0, 47, 52);
-  margin: 48px 37px 30px;
+  margin: 40px;
+  text-align: center;
 }
 .imgs-row {
   width: 700px;
