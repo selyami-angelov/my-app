@@ -29,12 +29,10 @@ export const AuthContextProvider = ({ children }) => {
             followed: [],
           }
 
-          console.log(userData, 'result in context')
           createUserDoc(state.currentUser.uid, userData)
         }
       })
     }
-    console.log(state.currentUser, 'user from context')
   }, [state.currentUser])
 
   return (

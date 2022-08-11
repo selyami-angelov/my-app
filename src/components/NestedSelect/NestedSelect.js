@@ -3,7 +3,6 @@ import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
 import ListGroup from 'react-bootstrap/ListGroup'
 import SplitButton from 'react-bootstrap/SplitButton'
-import { FormContext, FormContextProvider } from '../../context/FormContext.js'
 import { FormErrorsContext } from '../../context/FormErrorsContext.js'
 import SubItemsPopover from '../SubItemsPopover/SubItemsPopover.js'
 import styles from './NestedSelect.module.css'
@@ -12,12 +11,17 @@ const NestedSelect = (props) => {
   //items
   const { items, showSubItem, icon, value, title, name } = props
   //sub-items (popover)
-  const { subItems, labelText, show, target, onSubItemClick } = props
+  const { subItems, labelText, show, setShow, target, onSubItemClick } = props
   const { formErrors } = useContext(FormErrorsContext)
 
   return (
     <>
-      <InputGroup size="lg" className="mb-3">
+      <div
+        style={{ display: show ? 'block' : 'none' }}
+        className={styles['overlay']}
+        onClick={() => setShow({ target: undefined, show: false })}
+      ></div>
+      <InputGroup size="lg" className={`${styles['input-group']} mb-3`}>
         <SplitButton
           variant="outline-secondary"
           title={title}
@@ -25,11 +29,11 @@ const NestedSelect = (props) => {
         >
           <ListGroup className={styles['list-group']} variant="flush">
             {items.map((item) => (
-              <ListGroup.Item key={item.label} onClick={showSubItem}>
+              <ListGroup.Item key={item.label} onMouseEnter={showSubItem}>
                 {(icon && (
-                  <>
+                  <div>
                     {item.icon} {item.label}
-                  </>
+                  </div>
                 )) ||
                   item.label}
               </ListGroup.Item>

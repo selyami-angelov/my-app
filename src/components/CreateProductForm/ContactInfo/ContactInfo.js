@@ -70,6 +70,7 @@ const ContactInfo = () => {
         subItems={citiesInRegion}
         labelText={formData.region}
         show={popOver.show}
+        setShow={setPopOver}
         target={popOver.target}
         onSubItemClick={onCityClick}
       />

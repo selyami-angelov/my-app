@@ -18,7 +18,6 @@ import FollowedProducts from './pages/followed-products/FollowedProducts.js'
 
 function App() {
   const { currentUser } = useContext(AuthContext)
-  console.log(currentUser, 'asd')
   return (
     <Router>
       <ShellBar></ShellBar>

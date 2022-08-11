@@ -25,6 +25,9 @@ const CategorySelect = () => {
   }
 
   const onCatClick = (e) => {
+    e.stopPropagation()
+    e.preventDefault()
+    console.log(e.target)
     const labelText = formData?.category
     const currentLabelText = e.target?.innerText.trim()
 
@@ -34,7 +37,6 @@ const CategorySelect = () => {
       )
       setPopOver({ target: e.target, show: true })
       setCategory(selectedCategory)
-      console.log('in if')
     } else {
       setPopOver((prev) => ({ target: e.target, show: !prev.show }))
     }
@@ -77,12 +79,13 @@ const CategorySelect = () => {
             items={cats}
             subItems={selectedCategory?.subCats}
             show={popOver.show}
+            setShow={setPopOver}
             showSubItem={onCatClick}
             icon={true}
             value={`${formData.category}${
               formData.sub_category && '/ ' + formData.sub_category
             }`}
-            labelText={selectedCategory.label}
+            labelText={selectedCategory?.label}
             target={popOver.target}
             onSubItemClick={onSubCatClick}
           />

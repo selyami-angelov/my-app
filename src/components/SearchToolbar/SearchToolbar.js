@@ -14,9 +14,8 @@ const SearchToolbar = (props) => {
   const [regions, setRegions] = useState([])
   const [citiesInRegion, setCitiesInRegion] = useState([])
   const [region, setRegion] = useState('')
-  const [show, setShow] = useState(false)
-  const [target, setTarget] = useState(undefined)
-  const [value, setValue] = useState('')
+  const [popOver, setPopOver] = useState({ target: undefined, show: false })
+  const [locationSelect, setLocationSelect] = useState('')
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -36,9 +35,8 @@ const SearchToolbar = (props) => {
       .map((city) => city.city)
     setCitiesInRegion(citiesInRegion)
     setRegion(selectedRegion)
-    setShow(true)
-    setTarget(e.target)
-    setValue(selectedRegion)
+    setPopOver({ target: e.target, show: true })
+    setLocationSelect(selectedRegion)
   }
 
   const defaultSearch = (e) => {
@@ -54,28 +52,26 @@ const SearchToolbar = (props) => {
 
   const onCityClick = (e) => {
     e.preventDefault()
-    setValue((prev) => `${prev}, ${e.target.innerText}`)
-    setShow(false)
-  }
-  const handleOutsideClick = (e) => {
-    e.target.className !== 'list-group-item' && setShow(false)
+    setLocationSelect((prev) => `${prev}, ${e.target.innerText}`)
+    setPopOver({ target: undefined, show: false })
   }
 
   const handleSearch = (e) => {
     locationSearch ? locationSearch(e) : defaultSearch(e)
   }
 
+  const handleOnInput = (e) => {
+    console.log(e.target.value)
+  }
+
   return (
-    <ButtonToolbar
-      onClick={handleOutsideClick}
-      className={styles['search-bar']}
-    >
+    <ButtonToolbar className={styles['search-bar']}>
       <InputGroup size="lg" className="mb-3 d-flex align-items-baseline">
         <Form.Control
           type="search"
-          placeholder="141123 обяви близо до теб"
           className={`me-2 ${styles['input']}`}
           aria-label="Search"
+          onChange={handleOnInput}
         />
         <NestedSelect
           title={'Избери локация'}
@@ -83,16 +79,17 @@ const SearchToolbar = (props) => {
           items={regions}
           showSubItem={showCities}
           icon={false}
-          value={value}
+          value={locationSelect}
           subItems={citiesInRegion}
           labelText={region}
-          show={show}
-          target={target}
+          show={popOver.show}
+          setShow={setPopOver}
+          target={popOver.target}
           onSubItemClick={onCityClick}
         />
         <Button
           className={styles['search']}
-          name={value}
+          name={locationSelect}
           onClick={handleSearch}
           variant="outline-dark"
         >
