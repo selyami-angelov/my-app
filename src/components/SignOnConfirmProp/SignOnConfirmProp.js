@@ -33,16 +33,17 @@ const SignOnConfirmProp = (props) => {
   return (
     <>
       <Modal show={show} onHide={close}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
         <Modal.Body>
-          <Button variant="secondary" onClick={close}>
-            Close
+          <Button
+            style={{ fontWeight: 'bold' }}
+            variant="primary"
+            onClick={trigerSignWithPopup}
+          >
+            Продължи
           </Button>
-          <Button variant="primary" onClick={trigerSignWithPopup}>
-            Continue
-          </Button>
+          <label style={{ fontWeight: 'bold', marginLeft: '24px' }}>
+            Моля, натиснете "Продължи", за вход!
+          </label>
         </Modal.Body>
       </Modal>
     </>
