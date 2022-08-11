@@ -67,12 +67,6 @@ const SearchToolbar = (props) => {
   return (
     <ButtonToolbar className={styles['search-bar']}>
       <InputGroup size="lg" className="mb-3 d-flex align-items-baseline">
-        <Form.Control
-          type="search"
-          className={`me-2 ${styles['input']}`}
-          aria-label="Search"
-          onChange={handleOnInput}
-        />
         <NestedSelect
           title={'Избери локация'}
           name={'city'}
