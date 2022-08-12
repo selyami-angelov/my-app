@@ -5,6 +5,7 @@ import { getUserDoc } from '../services/user.js'
 const useFollowedProducts = () => {
   const { currentUser } = useContext(AuthContext)
   const [products, setProducts] = useState([])
+  const [triggerReq, setTriggerReq] = useState(false)
 
   useEffect(() => {
     if (currentUser) {
@@ -13,6 +14,18 @@ const useFollowedProducts = () => {
           setProducts(result.followed)
         }
       })
+    }
+  }, [triggerReq])
+
+  const handleFollowClick = () => {
+    setTimeout(() => {
+      setTriggerReq((prev) => !prev)
+    }, 100)
+  }
+  useEffect(() => {
+    window.addEventListener('follow', handleFollowClick)
+    return () => {
+      window.removeEventListener('follow', handleFollowClick)
     }
   }, [])
 

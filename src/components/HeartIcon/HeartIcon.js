@@ -33,6 +33,9 @@ const HeartIcon = (props) => {
           })
           setFollowed([...result.followed, props?.productId])
         }
+
+        const follow = new Event('follow')
+        window.dispatchEvent(follow)
       })
     }
   }
