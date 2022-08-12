@@ -24,7 +24,7 @@ const FollowedProducts = () => {
       <CardContainer
         cards={
           <Row className="g-4">
-            {products.length &&
+            {products.length ? (
               products.map((doc) => (
                 <Col key={doc.id} xs lg="3">
                   <ProductCard
@@ -37,7 +37,10 @@ const FollowedProducts = () => {
                     currency={doc.data.currency}
                   />
                 </Col>
-              ))}
+              ))
+            ) : (
+              <></>
+            )}
           </Row>
         }
         title="Любими обяви"

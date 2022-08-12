@@ -14,7 +14,7 @@ const Home = () => {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    getLastCreatedProducts(10).then((result) => {
+    getLastCreatedProducts(12).then((result) => {
       setProducts(result)
     })
   }, [])
@@ -26,7 +26,7 @@ const Home = () => {
       <CardContainer
         cards={
           <Row className="g-4">
-            {products.length &&
+            {products.length ? (
               products.map((doc) => (
                 <Col key={doc.id} xs lg="3">
                   <ProductCard
@@ -40,7 +40,10 @@ const Home = () => {
                     currency={doc.data.currency}
                   />
                 </Col>
-              ))}
+              ))
+            ) : (
+              <></>
+            )}
           </Row>
         }
         title="Последно добавени обяви"
