@@ -60,7 +60,7 @@ Create you first ad at https://react---xlo.web.app/ :partying_face:
    }
    ```
 
-   > **_NOTE:_** Commend prod config that use environment variables and uncomment dev config. Note that, there is no created ads in dev.
+   > **_NOTE:_** Comment prod config that use environment variables and uncomment dev config. Note that, there is no created ads in dev.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
