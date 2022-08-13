@@ -29,3 +29,11 @@
   color: rgb(127, 151, 153);
   margin: 0px 0px 16px;
 }
+.col {
+  width: 150px;
+}
+.imgs-row {
+  display: flex;
+  justify-content: start;
+  gap: 0.5rem;
+}

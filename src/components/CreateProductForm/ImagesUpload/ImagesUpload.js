@@ -20,18 +20,18 @@ export const ImagesUpload = (props) => {
       <label className={styles['label']}>
         Първата снимка ще бъде основната в обявата ти.
       </label>
-      <Row className={`g-2 p-2 ${styles['imgs-row']}`}>
+      <div className={`${styles['imgs-row']} d-flex flex-row`}>
         {images.map((img, index) => (
-          <Col key={index}>
+          <div key={index} className={styles['col']}>
             <Image
               className={styles['ad-imgs']}
               rounded
               thumbnail
               src={img?.url}
             />
-          </Col>
+          </div>
         ))}
-      </Row>
+      </div>
       <Form.Group controlId="formFileLg" className="mb-3">
         <Form.Control
           className="mt-3"
